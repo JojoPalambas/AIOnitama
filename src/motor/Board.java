@@ -29,6 +29,13 @@ public class Board {
         freeCard = cards.get(4);
     }
 
+    public Board(Piece[][] table, Pair<Card, Card> handA, Pair<Card, Card> handB, Card freeCard) {
+        this.table = table;
+        this.handA = handA;
+        this.handB = handB;
+        this.freeCard = freeCard;
+    }
+
     public Team HasWon() {
         boolean kingAFound = false;
         boolean kingBFound = false;
@@ -66,5 +73,18 @@ public class Board {
             return Team.A;
 
         return Team.none;
+    }
+
+    public Board deepCopy() {
+        Piece[][] tableCopy = new Piece[5][5];
+        for (int i = 0; i < tableCopy.length; i++)
+            for (int j = 0; j < tableCopy[i].length; j++)
+                tableCopy[i][j] = table[i][j];
+
+        Pair<Card, Card> handACopy = new Pair<>(handA.getKey(), handA.getValue());
+        Pair<Card, Card> handBCopy = new Pair<>(handB.getKey(), handB.getValue());
+        Card freeCardCopy = freeCard;
+
+        return new Board(tableCopy, handACopy, handBCopy, freeCardCopy);
     }
 }

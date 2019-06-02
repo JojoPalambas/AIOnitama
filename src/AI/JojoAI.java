@@ -7,7 +7,6 @@ import motor.TurnResponse;
 
 public class JojoAI extends Player {
     public JojoAI(Team team) {
-        this.team = team;
     }
 
     @Override

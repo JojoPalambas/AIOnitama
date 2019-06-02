@@ -7,7 +7,6 @@ import motor.TurnResponse;
 
 public class CoucAI extends Player {
     public CoucAI(Team team) {
-        this.team = team;
     }
 
     @Override

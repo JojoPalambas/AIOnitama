@@ -73,11 +73,9 @@ public class Card {
     public int[][] getMoves() {
         int[][] ret = new int[5][5];
 
-        for (int i = 0; i < ret.length; i++) {
-            for (int j = 0; j < ret[i].length; j++) {
+        for (int i = 0; i < ret.length; i++)
+            for (int j = 0; j < ret[i].length; j++)
                 ret[i][j] = moves[i][j];
-            }
-        }
         return ret;
     }
 }
