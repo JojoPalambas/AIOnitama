@@ -2,11 +2,32 @@ package motor;
 
 import javafx.util.Pair;
 
+import java.util.ArrayList;
+
 public class Board {
     public Piece[][] table = new Piece[5][5];
-    public Pair<Card, Card> HandA;
+    public Pair<Card, Card> handA;
     public Pair<Card, Card> handB;
     public Card freeCard;
+
+    public Board() {
+        table = new Piece[5][5];
+        table[0][0] = new Piece(PieceType.monk, Team.A);
+        table[0][1] = new Piece(PieceType.monk, Team.A);
+        table[0][2] = new Piece(PieceType.king, Team.A);
+        table[0][3] = new Piece(PieceType.monk, Team.A);
+        table[0][4] = new Piece(PieceType.monk, Team.A);
+        table[1][0] = new Piece(PieceType.monk, Team.B);
+        table[1][1] = new Piece(PieceType.monk, Team.B);
+        table[1][2] = new Piece(PieceType.king, Team.B);
+        table[1][3] = new Piece(PieceType.monk, Team.B);
+        table[1][4] = new Piece(PieceType.monk, Team.B);
+
+        ArrayList<Card> cards = Card.Draw5();
+        handA = new Pair<>(cards.get(0), cards.get(1));
+        handB = new Pair<>(cards.get(2), cards.get(3));
+        freeCard = cards.get(4);
+    }
 
     public Team HasWon() {
         boolean kingAFound = false;
