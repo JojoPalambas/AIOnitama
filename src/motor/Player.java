@@ -1,9 +1,7 @@
 package motor;
 
-import javafx.util.Pair;
-
 public abstract class Player {
-    private Team team;
+    protected Team team;
 
     public abstract TurnResponse Play(Board boardCopy);
 
