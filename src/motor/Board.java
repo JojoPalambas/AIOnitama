@@ -75,6 +75,49 @@ public class Board {
         return Team.none;
     }
 
+    // True if the turn has been played, false if it was invalid
+    public boolean ApplyTurn(TurnResponse turn, Team team) {
+        int x = 0;
+        int y = 0;
+        Piece pieceToMove = null;
+
+        // Checks if the piece to move exists
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table[i].length; j++) {
+                if (table[i][j] == turn.piece) {
+                    x = i;
+                    y = j;
+                    pieceToMove = table[i][j];
+                    break;
+                }
+            }
+            if (pieceToMove != null)
+                break;
+        }
+        if (pieceToMove == null)
+            return false;
+
+        // Checks if the card is available to this player
+        if ((team == Team.A && turn.card != handA.getKey() && turn.card != handA.getValue())
+                || ((team == Team.B && turn.card != handB.getKey() && turn.card != handB.getValue())))
+            return false;
+
+        // Checks if the movement is allowed by the card
+        int[] vect = {
+                turn.destination[0] - x,
+                turn.destination[1] - y,
+        };
+        if (turn.card.getMoves()[vect[0] + 2][vect[1] + 2] != 1)
+            return false;
+
+        // Checks if the movement leads to an existing cell
+        if (turn.destination[0] < 0 || turn.destination[0] > 4 || turn.destination[1] < 0 || turn.destination[1] > 4)
+            return false;
+
+        // Makes the move
+        return true;
+    }
+
     public Board deepCopy() {
         Piece[][] tableCopy = new Piece[5][5];
         for (int i = 0; i < tableCopy.length; i++)

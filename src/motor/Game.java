@@ -23,7 +23,6 @@ public class Game {
         board = new Board();
 
         while(board.HasWon() == Team.none) {
-            // Play
         }
         System.out.println(board.HasWon());
     }
