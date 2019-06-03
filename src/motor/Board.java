@@ -17,11 +17,11 @@ public class Board {
         table[0][2] = new Piece(PieceType.king, Team.A);
         table[0][3] = new Piece(PieceType.monk, Team.A);
         table[0][4] = new Piece(PieceType.monk, Team.A);
-        table[1][0] = new Piece(PieceType.monk, Team.B);
-        table[1][1] = new Piece(PieceType.monk, Team.B);
-        table[1][2] = new Piece(PieceType.king, Team.B);
-        table[1][3] = new Piece(PieceType.monk, Team.B);
-        table[1][4] = new Piece(PieceType.monk, Team.B);
+        table[4][0] = new Piece(PieceType.monk, Team.B);
+        table[4][1] = new Piece(PieceType.monk, Team.B);
+        table[4][2] = new Piece(PieceType.king, Team.B);
+        table[4][3] = new Piece(PieceType.monk, Team.B);
+        table[4][4] = new Piece(PieceType.monk, Team.B);
 
         ArrayList<Card> cards = Card.Draw5();
         handA = new Pair<>(cards.get(0), cards.get(1));
