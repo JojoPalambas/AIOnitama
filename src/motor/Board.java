@@ -130,4 +130,40 @@ public class Board {
 
         return new Board(tableCopy, handACopy, handBCopy, freeCardCopy);
     }
+
+    public String toString() {
+        StringBuilder ret = new StringBuilder();
+
+        // Adds the table
+        for (int k = 0; k < table[0].length * 5 + 1; k++) {
+            ret.append("-");
+        }
+        ret.append("\n");
+        for (int i = 0; i < table.length; i++) {
+            ret.append("| ");
+            for (int j = 0; j < table[i].length; j++) {
+                if (table[i][j] == null) {
+                    ret.append("  ");
+                }
+                else {
+                    ret.append(table[i][j].team == Team.A ? "a" : "b");
+                    ret.append(table[i][j].type == PieceType.monk ? "M" : "K");
+                }
+                ret.append(" | ");
+            }
+            ret.append("\n");
+            for (int k = 0; k < table[0].length * 5 + 1; k++) {
+                ret.append("-");
+            }
+            ret.append("\n");
+        }
+        ret.append("\n");
+
+        ret.append("Team A cards: " + handA.getKey().getName() + " | " + handA.getValue().getName() + "\n");
+        ret.append("Team B cards: " + handB.getKey().getName() + " | " + handB.getValue().getName() + "\n");
+        ret.append("Free card: " + freeCard.getName());
+        ret.append("\n");
+
+        return ret.toString();
+    }
 }

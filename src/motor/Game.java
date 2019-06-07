@@ -22,8 +22,12 @@ public class Game {
         }
         board = new Board();
 
+        /*
         while(board.HasWon() == Team.none) {
+            System.out.println(board.toString());
         }
+        */
+        System.out.println(board.toString());
         System.out.println(board.HasWon());
     }
 }
