@@ -159,9 +159,9 @@ public class Board {
         }
         ret.append("\n");
 
-        ret.append("Team A cards: " + handA.getKey().getName() + " | " + handA.getValue().getName() + "\n");
-        ret.append("Team B cards: " + handB.getKey().getName() + " | " + handB.getValue().getName() + "\n");
-        ret.append("Free card: " + freeCard.getName());
+        ret.append("Team A cards: ").append(handA.getKey().getName()).append(" | ").append(handA.getValue().getName()).append("\n");
+        ret.append("Team B cards: ").append(handB.getKey().getName()).append(" | ").append(handB.getValue().getName()).append("\n");
+        ret.append("Free card: ").append(freeCard.getName());
         ret.append("\n");
 
         return ret.toString();
