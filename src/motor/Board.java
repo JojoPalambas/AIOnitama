@@ -107,7 +107,7 @@ public class Board {
                 turn.destination[0] - x,
                 turn.destination[1] - y,
         };
-        if (turn.card.getMoves()[vect[0] + 2][vect[1] + 2] != 1)
+        if (turn.card.GetMoves()[vect[0] + 2][vect[1] + 2] != 1)
             return false;
 
         // Checks if the movement leads to an existing cell
@@ -118,7 +118,7 @@ public class Board {
         return true;
     }
 
-    public Board deepCopy() {
+    public Board DeepCopy() {
         Piece[][] tableCopy = new Piece[5][5];
         for (int i = 0; i < tableCopy.length; i++)
             for (int j = 0; j < tableCopy[i].length; j++)
@@ -159,9 +159,9 @@ public class Board {
         }
         ret.append("\n");
 
-        ret.append("Team A cards: ").append(handA.getKey().getName()).append(" | ").append(handA.getValue().getName()).append("\n");
-        ret.append("Team B cards: ").append(handB.getKey().getName()).append(" | ").append(handB.getValue().getName()).append("\n");
-        ret.append("Free card: ").append(freeCard.getName());
+        ret.append("Team A cards: ").append(handA.getKey().GetName()).append(" | ").append(handA.getValue().GetName()).append("\n");
+        ret.append("Team B cards: ").append(handB.getKey().GetName()).append(" | ").append(handB.getValue().GetName()).append("\n");
+        ret.append("Free card: ").append(freeCard.GetName());
         ret.append("\n");
 
         return ret.toString();

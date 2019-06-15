@@ -66,11 +66,11 @@ public class Card {
         return ret;
     }
 
-    public String getName() {
+    public String GetName() {
         return name;
     }
 
-    public int[][] getMoves() {
+    public int[][] GetMoves() {
         int[][] ret = new int[5][5];
 
         for (int i = 0; i < ret.length; i++)
