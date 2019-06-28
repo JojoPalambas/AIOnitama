@@ -82,6 +82,7 @@ public class Board {
         Piece pieceToMove = null;
 
         // Checks if the piece to move exists
+        // FIXME For fuck's sake, rewrite this shit
         for (int i = 0; i < table.length; i++) {
             for (int j = 0; j < table[i].length; j++) {
                 if (table[i][j] == turn.piece) {
@@ -102,11 +103,16 @@ public class Board {
                 || ((team == Team.B && turn.card != handB.getKey() && turn.card != handB.getValue())))
             return false;
 
-        // Checks if the movement is allowed by the card
         int[] vect = {
                 turn.destination[0] - x,
                 turn.destination[1] - y,
         };
+
+        // Checks if the move actually fits in a 5x5 square around the piece
+        if (vect[0] + 2 < 0 || vect[0] + 2 > 4 || vect[1] + 2 < 0 || vect[1] + 2 >4)
+            return false;
+
+        // Checks if the movement is allowed by the card
         if (turn.card.GetMoves()[vect[0] + 2][vect[1] + 2] != 1)
             return false;
 
@@ -115,6 +121,9 @@ public class Board {
             return false;
 
         // Makes the move
+        table[turn.destination[0]][turn.destination[1]] = table[x][y];
+        table[x][y] = null;
+
         return true;
     }
 
