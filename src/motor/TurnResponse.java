@@ -3,12 +3,12 @@ package motor;
 import javafx.util.Pair;
 
 public class TurnResponse {
-    public final Card card;
+    public final String cardName;
     public final Piece piece;
     public final int[] destination;
 
-    public TurnResponse(Card card, Piece piece, int[] destination) {
-        this.card = card;
+    public TurnResponse(String cardName, Piece piece, int[] destination) {
+        this.cardName = cardName;
         this.piece = piece;
         this.destination = destination;
     }

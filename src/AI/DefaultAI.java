@@ -19,6 +19,9 @@ public class DefaultAI extends Player {
                 table[i][j] = board.table[4 - i][4 - j];
             }
         }
+
+        Card card1 = null;
+        Card card2 = null;
     }
 
     @Override

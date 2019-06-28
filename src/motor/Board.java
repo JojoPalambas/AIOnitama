@@ -81,7 +81,7 @@ public class Board {
         int y = 0;
         Piece pieceToMove = null;
 
-        // Checks if the piece to move exists
+        // Checks if the piece to move exists and belongs to the right player
         // FIXME For fuck's sake, rewrite this shit
         for (int i = 0; i < table.length; i++) {
             for (int j = 0; j < table[i].length; j++) {
@@ -95,12 +95,20 @@ public class Board {
             if (pieceToMove != null)
                 break;
         }
-        if (pieceToMove == null)
+        if (pieceToMove == null || pieceToMove.team != team)
             return false;
 
         // Checks if the card is available to this player
-        if ((team == Team.A && turn.card != handA.getKey() && turn.card != handA.getValue())
-                || ((team == Team.B && turn.card != handB.getKey() && turn.card != handB.getValue())))
+        Card usedCard = null;
+        if (team == Team.A && handA.getKey().GetName().equals(turn.cardName))
+            usedCard = handA.getKey();
+        else if (team == Team.A && handA.getValue().GetName().equals(turn.cardName))
+            usedCard = handA.getValue();
+        else if (team == Team.B && handB.getKey().GetName().equals(turn.cardName))
+            usedCard = handB.getKey();
+        else if (team == Team.B && handB.getValue().GetName().equals(turn.cardName))
+            usedCard = handB.getValue();
+        else
             return false;
 
         int[] vect = {
@@ -113,7 +121,7 @@ public class Board {
             return false;
 
         // Checks if the movement is allowed by the card
-        if (turn.card.GetMoves()[vect[0] + 2][vect[1] + 2] != 1)
+        if (usedCard.GetMoves()[vect[0] + 2][vect[1] + 2] != 1)
             return false;
 
         // Checks if the movement leads to an existing cell
