@@ -17,7 +17,10 @@ public class Board : MonoBehaviour
     void Start()
     {
         if (instance != null)
+        {
             Destroy(gameObject);
+            return;
+        }
         instance = this;
 
         InitTable();
