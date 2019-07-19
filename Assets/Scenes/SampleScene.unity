@@ -707,8 +707,9 @@ GameObject:
   m_Component:
   - component: {fileID: 897410919}
   - component: {fileID: 897410918}
+  - component: {fileID: 897410920}
   m_Layer: 0
-  m_Name: Table
+  m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -776,6 +777,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &897410920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897410917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0fe8ada3b18ceb4c87411ac2dfdc58d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AKPrefab: {fileID: 3556239099435988630, guid: e767bad4ac64e6945912fefd5d9c6c90,
+    type: 3}
+  AMPrefab: {fileID: 3271376736911438748, guid: a0e281c75d813c64fac57e94f394bcd4,
+    type: 3}
+  BKPrefab: {fileID: 8774500425964403333, guid: 9ea4134ab77607e439cc99e5661a0000,
+    type: 3}
+  BMPrefab: {fileID: 7606361267092770801, guid: f47bacb462f18104995e3057807e7d0f,
+    type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,6 +1111,7 @@ MonoBehaviour:
   - {fileID: 1347780786707457214, guid: fa194605350e9124f8178af213f2a17a, type: 3}
   - {fileID: 3777483831892605294, guid: 8a6a74e2845fe5b458cf9898c7374924, type: 3}
   - {fileID: 8939410091719544266, guid: 5664304deccc0e74db1e617ba5aeb32f, type: 3}
+  board: {fileID: 0}
 --- !u!4 &1311572634
 Transform:
   m_ObjectHideFlags: 0
