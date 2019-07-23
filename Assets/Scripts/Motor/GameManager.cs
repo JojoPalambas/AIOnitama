@@ -35,7 +35,16 @@ public class GameManager : MonoBehaviour
     public GameObject AIPrefabA;
     public GameObject AIPrefabB;
 
+    public GameObject playerIndicatorLeftPanel;
+    public GameObject playerIndicatorRightPanel;
+
+    public GameObject playerIndicatorAPanelPrefab;
+    public GameObject playerIndicatorBPanelPrefab;
+    public GameObject playerIndicatorHumanPanelPrefab;
+    public GameObject playerIndicatorAIPanelPrefab;
+
     private GameStatus status;
+    private Team currentPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -61,15 +70,19 @@ public class GameManager : MonoBehaviour
             status = GameStatus.waiting;
 
             // 50% chance to switch the two AIs
-            if (Random.Range(0, 1) > .5f)
+            if (Random.Range(0, 2) >= 1)
             {
                 AI tmp = AIA;
                 AIA = AIB;
                 AIB = tmp;
             }
 
-            AIA.Init(Team.A);
-            AIB.Init(Team.B);
+            if (AIA != null)
+                AIA.Init(Team.A);
+            if (AIB != null)
+                AIB.Init(Team.B);
+
+            SetCurrentPlayer(Team.A);
         }
     }
 
@@ -108,24 +121,100 @@ public class GameManager : MonoBehaviour
 
     private void InitAIs()
     {
-        Instantiate(AIPrefabA);
-        Instantiate(AIPrefabB);
+        if (AIPrefabA != null)
+            Instantiate(AIPrefabA);
+        if (AIPrefabB != null)
+            Instantiate(AIPrefabB);
     }
 
     public void DeclareAI(AI ai)
     {
         if (AIA == null)
         {
-            Debug.Log("AIA registered");
             AIA = ai;
             return;
         }
         if (AIB == null)
         {
-            Debug.Log("AIA registered");
             AIB = ai;
             return;
         }
         Debug.LogError("Too much AIs to register!");
+    }
+
+    private void SetCurrentPlayer(Team player)
+    {
+        currentPlayer = player;
+
+        if (player == Team.A)
+        {
+            Vector3 pos = playerIndicatorLeftPanel.transform.position;
+            Destroy(playerIndicatorLeftPanel);
+            playerIndicatorLeftPanel = Instantiate(playerIndicatorAPanelPrefab, pos, new Quaternion());
+
+            if (AIA == null)
+            {
+                pos = playerIndicatorRightPanel.transform.position;
+                Destroy(playerIndicatorRightPanel);
+                playerIndicatorRightPanel = Instantiate(playerIndicatorHumanPanelPrefab, pos, new Quaternion());
+            }
+            else
+            {
+                pos = playerIndicatorRightPanel.transform.position;
+                Destroy(playerIndicatorRightPanel);
+                playerIndicatorRightPanel = Instantiate(playerIndicatorAIPanelPrefab, pos, new Quaternion());
+            }
+        }
+        else
+        {
+            Vector3 pos = playerIndicatorLeftPanel.transform.position;
+            Destroy(playerIndicatorLeftPanel);
+            playerIndicatorLeftPanel = Instantiate(playerIndicatorBPanelPrefab, pos, new Quaternion());
+
+            if (AIB == null)
+            {
+                pos = playerIndicatorRightPanel.transform.position;
+                Destroy(playerIndicatorRightPanel);
+                playerIndicatorRightPanel = Instantiate(playerIndicatorHumanPanelPrefab, pos, new Quaternion());
+            }
+            else
+            {
+                pos = playerIndicatorRightPanel.transform.position;
+                Destroy(playerIndicatorRightPanel);
+                playerIndicatorRightPanel = Instantiate(playerIndicatorHumanPanelPrefab, pos, new Quaternion());
+            }
+        }
+    }
+
+    public void NextTurn()
+    {
+        Debug.Log("Next turn");
+
+        if (currentPlayer == Team.A)
+        {
+            if (AIA != null)
+            {
+                Debug.Log("AI A turn");
+            }
+            else
+            {
+                Debug.Log("Player A turn");
+            }
+
+            SetCurrentPlayer(Team.B);
+        }
+        else
+        {
+            if (AIB != null)
+            {
+                Debug.Log("AI B turn");
+            }
+            else
+            {
+                Debug.Log("Player B turn");
+            }
+
+            SetCurrentPlayer(Team.A);
+        }
     }
 }
