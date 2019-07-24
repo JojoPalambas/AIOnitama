@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class AIDefault : AI
 {
+    private Team team;
+
     public override void Init(Team team)
     {
-        Debug.Log(team);
+        this.team = team;
         return;
     }
 
     public override TurnResponse PlayTurn()
     {
-        return null;
+        return new TurnResponse("Card", new Vector2Int(0, 0), new Vector2Int(0, 1));
     }
 }

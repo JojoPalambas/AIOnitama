@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
             {
                 pos = playerIndicatorRightPanel.transform.position;
                 Destroy(playerIndicatorRightPanel);
-                playerIndicatorRightPanel = Instantiate(playerIndicatorHumanPanelPrefab, pos, new Quaternion());
+                playerIndicatorRightPanel = Instantiate(playerIndicatorAIPanelPrefab, pos, new Quaternion());
             }
         }
     }
@@ -194,7 +194,8 @@ public class GameManager : MonoBehaviour
         {
             if (AIA != null)
             {
-                Debug.Log("AI A turn");
+                TurnResponse res = AIA.PlayTurn();
+                board.ApplyTurn(res);
             }
             else
             {

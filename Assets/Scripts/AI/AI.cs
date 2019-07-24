@@ -8,6 +8,13 @@ public class TurnResponse
 
     public Vector2Int source;
     public Vector2Int destination;
+
+    public TurnResponse(string cardName, Vector2Int source, Vector2Int destination)
+    {
+        this.cardName = cardName;
+        this.source = source;
+        this.destination = destination;
+    }
 }
 
 public abstract class AI
