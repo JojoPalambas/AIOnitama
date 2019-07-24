@@ -5,7 +5,8 @@ using UnityEngine;
 public enum Team
 {
     A,
-    B
+    B,
+    none
 }
 
 public enum GameStatus
@@ -194,8 +195,10 @@ public class GameManager : MonoBehaviour
         {
             if (AIA != null)
             {
-                TurnResponse res = AIA.PlayTurn();
-                board.ApplyTurn(res);
+                TurnResponse turn = AIA.PlayTurn();
+                if (!board.IsTurnValid(turn))
+                    Debug.Log("Invalid turn!");
+                board.ApplyTurn(turn);
             }
             else
             {

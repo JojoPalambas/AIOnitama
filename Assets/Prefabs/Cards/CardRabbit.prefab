@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Rabbit
-  moves:
+  movesStrings:
   - 00000
   - 00010
   - 00001

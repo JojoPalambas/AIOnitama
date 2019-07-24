@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Tiger
-  moves:
+  movesStrings:
   - 00100
   - 00000
   - 00000

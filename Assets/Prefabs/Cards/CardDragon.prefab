@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Dragon
-  moves:
+  movesStrings:
   - 00000
   - 10001
   - 00000

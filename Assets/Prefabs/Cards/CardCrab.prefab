@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Crab
-  moves:
+  movesStrings:
   - 00000
   - 00100
   - 10001

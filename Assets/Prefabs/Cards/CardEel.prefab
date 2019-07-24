@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveName: Eel
-  moves:
+  movesStrings:
   - 00000
   - 01000
   - 00010

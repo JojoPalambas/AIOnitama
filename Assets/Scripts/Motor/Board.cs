@@ -79,9 +79,32 @@ public class Board : MonoBehaviour
         if (table[destination.x][destination.y] != null)
             table[destination.x][destination.y].SetPosition(new Vector2Int(destination.x, destination.y));
     }
+    public bool IsTurnValid(TurnResponse turn)
+    {
+        // The source and the destination have to exist
+
+        // The source must contain a movable Piece
+
+        // The destination must not contain a movable Piece
+
+        // The player must own the designated card
+
+        // The move must be allowed by the designated card
+
+        return true;
+    }
 
     public void ApplyTurn(TurnResponse turn)
     {
         MovePiece(turn.source, turn.destination);
+    }
+
+    public Team HasGameEnded ()
+    {
+        // One of the players have lost their king
+
+        // One of the player's king is on the other player's throne
+
+        return Team.none;
     }
 }
