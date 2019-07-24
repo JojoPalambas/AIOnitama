@@ -197,8 +197,13 @@ public class GameManager : MonoBehaviour
             {
                 TurnResponse turn = AIA.PlayTurn();
                 if (!board.IsTurnValid(turn))
+                {
                     Debug.Log("Invalid turn!");
-                board.ApplyTurn(turn);
+                }
+                else
+                {
+                    board.ApplyTurn(turn);
+                }
             }
             else
             {
@@ -211,7 +216,15 @@ public class GameManager : MonoBehaviour
         {
             if (AIB != null)
             {
-                Debug.Log("AI B turn");
+                TurnResponse turn = AIB.PlayTurn();
+                if (!board.IsTurnValid(turn))
+                {
+                    Debug.Log("Invalid turn!");
+                }
+                else
+                {
+                    board.ApplyTurn(turn);
+                }
             }
             else
             {
@@ -219,6 +232,12 @@ public class GameManager : MonoBehaviour
             }
 
             SetCurrentPlayer(Team.A);
+        }
+
+        Team winner = board.HasGameEnded();
+        if (winner != Team.none)
+        {
+            Debug.Log("Game won by player " + winner.ToString() + "!");
         }
     }
 }
