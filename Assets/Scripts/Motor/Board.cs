@@ -65,20 +65,6 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void MovePiece(Vector2Int source, Vector2Int destination)
-    {
-        // Moving the pieces in the table
-        Piece tmp = table[source.x][source.y];
-        table[source.x][source.y] = table[destination.x][destination.y];
-        table[destination.x][destination.y] = tmp;
-
-        // Physically moving the pieces
-        if (table[source.x][source.y] != null)
-            table[source.x][source.y].SetPosition(new Vector2Int(source.x, source.y));
-
-        if (table[destination.x][destination.y] != null)
-            table[destination.x][destination.y].SetPosition(new Vector2Int(destination.x, destination.y));
-    }
     public bool IsTurnValid(TurnResponse turn, Team team)
     {
         // The source and the destination have to be in the bounds of the map
@@ -146,14 +132,69 @@ public class Board : MonoBehaviour
 
     public void ApplyTurn(TurnResponse turn)
     {
+        if (table[turn.destination.x][turn.destination.y] != null)
+        {
+            Destroy(table[turn.destination.x][turn.destination.y].gameObject);
+            table[turn.destination.x][turn.destination.y] = null;
+        }
+
         MovePiece(turn.source, turn.destination);
+    }
+
+    private void MovePiece(Vector2Int source, Vector2Int destination)
+    {
+        // Moving the pieces in the table
+        table[destination.x][destination.y] = table[source.x][source.y];
+        table[source.x][source.y] = null;
+
+        // Physically moving the pieces
+        if (table[source.x][source.y] != null)
+            table[source.x][source.y].SetPosition(new Vector2Int(source.x, source.y));
+
+        if (table[destination.x][destination.y] != null)
+            table[destination.x][destination.y].SetPosition(new Vector2Int(destination.x, destination.y));
     }
 
     public Team HasGameEnded ()
     {
         // One of the players have lost their king
+        bool kingAFound = false;
+        bool kingBFound = false;
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (table[i][j] != null && table[i][j].type == PieceType.king)
+                {
+                    if (table[i][j].team == Team.A)
+                        kingAFound = true;
+                    if (table[i][j].team == Team.B)
+                        kingBFound = true;
+                }
+            }
+        }
+        if (!kingAFound)
+        {
+            Debug.Log("King A not found");
+            return Team.B;
+        }
+        if (!kingBFound)
+        {
+            Debug.Log("King B not found");
+            return Team.B;
+        }
 
-        // One of the player's king is on the other player's throne
+        // One of the player's pieces is on the other player's throne
+        if (table[2][0] != null && table[2][0].team == Team.B)
+        {
+            Debug.Log("Throne A taken");
+            return Team.B;
+        }
+        if (table[2][4] != null && table[2][4].team == Team.A)
+        {
+            Debug.Log("Throne B taken");
+            return Team.B;
+        }
 
         return Team.none;
     }

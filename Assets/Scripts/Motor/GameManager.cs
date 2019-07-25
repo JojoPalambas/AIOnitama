@@ -203,6 +203,7 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     board.ApplyTurn(turn);
+                    UseCard(turn.cardName, Team.A);
                 }
             }
             else
@@ -224,6 +225,7 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     board.ApplyTurn(turn);
+                    UseCard(turn.cardName, Team.B);
                 }
             }
             else
@@ -239,5 +241,64 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Game won by player " + winner.ToString() + "!");
         }
+    }
+
+    private void UseCard(string cardName, Team team)
+    {
+        if (team == Team.A)
+        {
+            if (cardA1.cardName == cardName)
+            {
+                Card tmpCard = freeCard;
+                freeCard = cardA1;
+                cardA1 = tmpCard;
+
+                Vector3 tmpPos = freeCard.transform.position;
+                freeCard.transform.position = cardA1.transform.position;
+                cardA1.transform.position = tmpPos;
+
+                return;
+            }
+            if (cardA2.cardName == cardName)
+            {
+                Card tmpCard = freeCard;
+                freeCard = cardA2;
+                cardA2 = tmpCard;
+
+                Vector3 tmpPos = freeCard.transform.position;
+                freeCard.transform.position = cardA2.transform.position;
+                cardA2.transform.position = tmpPos;
+
+                return;
+            }
+        }
+        if (team == Team.B)
+        {
+            if (cardB1.cardName == cardName)
+            {
+                Card tmpCard = freeCard;
+                freeCard = cardB1;
+                cardB1 = tmpCard;
+
+                Vector3 tmpPos = freeCard.transform.position;
+                freeCard.transform.position = cardB1.transform.position;
+                cardB1.transform.position = tmpPos;
+
+                return;
+            }
+            if (cardB2.cardName == cardName)
+            {
+                Card tmpCard = freeCard;
+                freeCard = cardB2;
+                cardB2 = tmpCard;
+
+                Vector3 tmpPos = freeCard.transform.position;
+                freeCard.transform.position = cardB2.transform.position;
+                cardB2.transform.position = tmpPos;
+
+                return;
+            }
+        }
+        Debug.LogError("This line should not be read");
     }
 }
