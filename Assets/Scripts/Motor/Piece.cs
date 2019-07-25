@@ -5,15 +5,14 @@ using UnityEngine;
 public enum PieceType
 {
     none,
-    AK,
-    AM,
-    BK,
-    BM
+    king,
+    monk
 }
 
 public class Piece : MonoBehaviour
 {
     public PieceType type;
+    public Team team;
     public Vector2Int position;
 
     // Start is called before the first frame update

@@ -14,6 +14,6 @@ public class AIDefault : AI
 
     public override TurnResponse PlayTurn()
     {
-        return new TurnResponse("Card", new Vector2Int(0, 0), new Vector2Int(0, 1));
+        return new TurnResponse("Elephant", new Vector2Int(0, 0), new Vector2Int(1, 1));
     }
 }

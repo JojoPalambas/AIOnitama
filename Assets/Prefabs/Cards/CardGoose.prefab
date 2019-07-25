@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a66205f18bd04a24db021a7a911d3351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveName: Goose
+  cardName: Goose
   movesStrings:
   - 00000
   - 01000

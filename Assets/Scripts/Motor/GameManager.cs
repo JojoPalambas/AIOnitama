@@ -4,9 +4,9 @@ using UnityEngine;
 
 public enum Team
 {
+    none,
     A,
-    B,
-    none
+    B
 }
 
 public enum GameStatus
@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameObject cardA1Location;
-    public GameObject cardA2Location;
-    public GameObject cardB1Location;
-    public GameObject cardB2Location;
-    public GameObject freeCardLocation;
+    public Card cardA1;
+    public Card cardA2;
+    public Card cardB1;
+    public Card cardB2;
+    public Card freeCard;
 
     public List<GameObject> cardPrefabs;
 
@@ -99,25 +99,25 @@ public class GameManager : MonoBehaviour
             chosenCardsIndexes[i] = cardIndex;
         }
 
-        Vector3 pos = cardA1Location.transform.position;
-        Destroy(cardA1Location);
-        Instantiate(cardPrefabs[chosenCardsIndexes[0]], pos, new Quaternion());
+        Vector3 pos = cardA1.transform.position;
+        Destroy(cardA1.gameObject);
+        cardA1 = Instantiate(cardPrefabs[chosenCardsIndexes[0]], pos, new Quaternion()).GetComponent<Card>();
 
-        pos = cardA2Location.transform.position;
-        Destroy(cardA2Location);
-        Instantiate(cardPrefabs[chosenCardsIndexes[1]], pos, new Quaternion());
+        pos = cardA2.transform.position;
+        Destroy(cardA2.gameObject);
+        cardA2 = Instantiate(cardPrefabs[chosenCardsIndexes[1]], pos, new Quaternion()).GetComponent<Card>();
 
-        pos = cardB1Location.transform.position;
-        Destroy(cardB1Location);
-        Instantiate(cardPrefabs[chosenCardsIndexes[2]], pos, new Quaternion());
+        pos = cardB1.transform.position;
+        Destroy(cardB1.gameObject);
+        cardB1 = Instantiate(cardPrefabs[chosenCardsIndexes[2]], pos, new Quaternion()).GetComponent<Card>();
 
-        pos = cardB2Location.transform.position;
-        Destroy(cardB2Location);
-        Instantiate(cardPrefabs[chosenCardsIndexes[3]], pos, new Quaternion());
+        pos = cardB2.transform.position;
+        Destroy(cardB2.gameObject);
+        cardB2 = Instantiate(cardPrefabs[chosenCardsIndexes[3]], pos, new Quaternion()).GetComponent<Card>();
 
-        pos = freeCardLocation.transform.position;
-        Destroy(freeCardLocation);
-        Instantiate(cardPrefabs[chosenCardsIndexes[4]], pos, new Quaternion());
+        pos = freeCard.transform.position;
+        Destroy(freeCard.gameObject);
+        freeCard = Instantiate(cardPrefabs[chosenCardsIndexes[4]], pos, new Quaternion()).GetComponent<Card>();
     }
 
     private void InitAIs()
@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
             if (AIA != null)
             {
                 TurnResponse turn = AIA.PlayTurn();
-                if (!board.IsTurnValid(turn))
+                if (!board.IsTurnValid(turn, Team.A))
                 {
                     Debug.Log("Invalid turn!");
                 }
@@ -217,7 +217,7 @@ public class GameManager : MonoBehaviour
             if (AIB != null)
             {
                 TurnResponse turn = AIB.PlayTurn();
-                if (!board.IsTurnValid(turn))
+                if (!board.IsTurnValid(turn, Team.B))
                 {
                     Debug.Log("Invalid turn!");
                 }

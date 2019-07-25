@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    [SerializeField] private string moveName;
+    public string cardName;
     [SerializeField] private List<string> movesStrings;
     private int[][] moves;
 
@@ -17,13 +17,15 @@ public class Card : MonoBehaviour
             moves[i] = new int[5];
             for (int j = 0; j < 5; j++)
             {
-                Debug.Log(moves[i][j]);
-                if (movesStrings[i][j] == '0')
+                if (movesStrings[4 - j][i] == '0')
                     moves[i][j] = 0;
                 else
                     moves[i][j] = 1;
             }
         }
+
+        //Debug.LogWarning(cardName);
+        //PrintWeirdly();
     }
 
     // Update is called once per frame
@@ -57,5 +59,19 @@ public class Card : MonoBehaviour
             }
         }
         return ret;
+    }
+
+    public void PrintWeirdly()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (moves[i][j] == 1)
+                {
+                    Debug.Log(i.ToString() + " - " + j.ToString());
+                }
+            }
+        }
     }
 }
