@@ -235,6 +235,8 @@ public class GameManager : MonoBehaviour
                 TurnResponse turn = AIA.PlayTurn();
 
                 stopwatch.Stop();
+                Debug.Log("Player A played in " + stopwatch.ElapsedMilliseconds.ToString() + " milliseconds!");
+
                 if (stopwatch.ElapsedMilliseconds > GameConstants.maxTurnTimeMillis)
                 {
                     EndGame(Team.B, "Too much thinking time: " + stopwatch.ElapsedMilliseconds.ToString() + " milliseconds");
@@ -266,6 +268,8 @@ public class GameManager : MonoBehaviour
                 TurnResponse turn = AIB.PlayTurn();
 
                 stopwatch.Stop();
+                Debug.Log("Player B played in " + stopwatch.ElapsedMilliseconds.ToString() + " milliseconds!");
+
                 if (stopwatch.ElapsedMilliseconds > GameConstants.maxTurnTimeMillis)
                 {
                     EndGame(Team.A, "Too much thinking time: " + stopwatch.ElapsedMilliseconds.ToString() + " milliseconds");

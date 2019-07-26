@@ -1,0 +1,37 @@
+
+
+===== GENERAL
+
+- 2 functions
+  - Estimate, a light non-recursive function made to evaluate the positivity of a situation ; 0 is certain death, 1 is certain win
+  - Choose, a deep recursive choosing function, which will traverse the turn possibilities to find the best one ; at its leaves, it will use Estimate
+
+===== ESTIMATE
+
+=== GENERAL
+
+- Returns a float between 0 and 1
+- Returns 0 if certain death
+- Returns 1 if certain win
+
+=== V0
+
+- Returns 0 if the game is lost
+- Returns 1 if the game is won
+- Returns 0.5 in any other case
+
+===== CHOOSE
+
+- Returns a class containing the TurnResponse and the positivity
+- If the critical time (default = Max(9/10 of the given time, 150 milliseconds)) is not reached, continues the traversal
+- If the critical time is reached, checks all the possibilities with the Estimate function, and returns the best TurnResponse with a positivity found with Estimate
+
+=== V1
+
+- If the critical time is not reached
+  - Builds all the possible turns
+  - Recursive call on all the possibilities ; finds the least positive possibility (as it is the other player's turn), and returns its turn with, as a positivity, the average between all the
+    reversed positivities found with the recursive calls
+- If the vritical time is reached
+  - Builds all the possible turns
+  - Estimates the positivities of all the turns and returns the least positive, with the average of all the reversed positivities as a positivity
