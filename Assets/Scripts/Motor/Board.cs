@@ -70,26 +70,26 @@ public class Board : MonoBehaviour
         // The source and the destination have to be in the bounds of the map
         if (turn.source.x < 0 || turn.source.x >= 5 || turn.source.y < 0 || turn.source.y >= 5)
         {
-            Debug.LogWarning("The move source is out of bounds");
+            GameManager.instance.EndGame(team == Team.A ? Team.B : Team.A, "The move source is out of bounds");
             return false;
         }
         if (turn.destination.x < 0 || turn.destination.x >= 5 || turn.destination.y < 0 || turn.destination.y >= 5)
         {
-            Debug.LogWarning("The move destination is out of bounds");
+            GameManager.instance.EndGame(team == Team.A ? Team.B : Team.A, "The move destination is out of bounds");
             return false;
         }
 
         // The source must contain a movable Piece
         if (table[turn.source.x][turn.source.y] == null || table[turn.source.x][turn.source.y].team != team)
         {
-            Debug.LogWarning("The move source does not contain a movable piece");
+            GameManager.instance.EndGame(team == Team.A ? Team.B : Team.A, "The move source does not contain a movable piece");
             return false;
         }
 
         // The destination must not contain a movable Piece
         if (table[turn.destination.x][turn.destination.y] != null && table[turn.destination.x][turn.destination.y].team == team)
         {
-            Debug.LogWarning("The move destination contains a movable piece");
+            GameManager.instance.EndGame(team == Team.A ? Team.B : Team.A, "The move destination contains a movable piece");
             return false;
         }
 
@@ -105,7 +105,7 @@ public class Board : MonoBehaviour
             playedCard = GameManager.instance.cardB2;
         if (playedCard == null)
         {
-            Debug.LogWarning("The player does not own the right card");
+            GameManager.instance.EndGame(team == Team.A ? Team.B : Team.A, "The player does not own the right card");
             return false;
         }
 
@@ -113,17 +113,17 @@ public class Board : MonoBehaviour
         Vector2Int moveVector = turn.destination - turn.source;
         if (moveVector.x < -2 || moveVector.x >= 3 || moveVector.y < -2 || moveVector.y >= 3)
         {
-            Debug.LogWarning("This move exceeds 2 cells in height or width");
+            GameManager.instance.EndGame(team == Team.A ? Team.B : Team.A, "This move exceeds 2 cells in height or width");
             return false;
         }
         if (team == Team.A && playedCard.GetMoves()[moveVector.x + 2][moveVector.y + 2] == 0)
         {
-            Debug.LogWarning("The \"" + turn.cardName + "\" card does not allow this move");
+            GameManager.instance.EndGame(team == Team.A ? Team.B : Team.A, "The \"" + turn.cardName + "\" card does not allow this move");
             return false;
         }
         if (team == Team.B && playedCard.GetMovesReversed()[moveVector.x + 2][moveVector.y + 2] == 0)
         {
-            Debug.LogWarning("The \"" + turn.cardName + "\" card does not allow this move");
+            GameManager.instance.EndGame(team == Team.A ? Team.B : Team.A, "The \"" + turn.cardName + "\" card does not allow this move");
             return false;
         }
 
@@ -175,24 +175,24 @@ public class Board : MonoBehaviour
         }
         if (!kingAFound)
         {
-            Debug.Log("King A not found");
+            GameManager.instance.EndGame(Team.B, "King A not found");
             return Team.B;
         }
         if (!kingBFound)
         {
-            Debug.Log("King B not found");
+            GameManager.instance.EndGame(Team.A, "King B not found");
             return Team.B;
         }
 
         // One of the player's pieces is on the other player's throne
         if (table[2][0] != null && table[2][0].team == Team.B)
         {
-            Debug.Log("Throne A taken");
+            GameManager.instance.EndGame(Team.B, "Throne A taken");
             return Team.B;
         }
         if (table[2][4] != null && table[2][4].team == Team.A)
         {
-            Debug.Log("Throne B taken");
+            GameManager.instance.EndGame(Team.A, "Throne B taken");
             return Team.B;
         }
 

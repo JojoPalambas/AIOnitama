@@ -16,7 +16,8 @@ public enum GameStatus
 {
     firstFrame,
     waiting,
-    playing
+    playing,
+    end
 }
 
 public class GameManager : MonoBehaviour
@@ -50,6 +51,8 @@ public class GameManager : MonoBehaviour
     private GameStatus status;
     private Team currentPlayer;
 
+    private Team winner;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +72,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (status == GameStatus.end)
+            return;
+
         if (status == GameStatus.firstFrame)
         {
             status = GameStatus.waiting;
@@ -211,6 +217,9 @@ public class GameManager : MonoBehaviour
 
     public void NextTurn()
     {
+        if (status == GameStatus.end)
+            return;
+
         Debug.Log("Next turn");
 
         if (currentPlayer == Team.A)
@@ -224,10 +233,13 @@ public class GameManager : MonoBehaviour
 
                 stopwatch.Stop();
                 if (stopwatch.ElapsedMilliseconds > GameConstants.maxTurnTimeMillis)
-                    Debug.LogWarning("Too much thinking time: " + stopwatch.ElapsedMilliseconds.ToString() + " milliseconds");
+                {
+                    EndGame(Team.B, "Too much thinking time: " + stopwatch.ElapsedMilliseconds.ToString() + " milliseconds");
+                    return;
+                }
 
                 if (!board.IsTurnValid(turn, Team.A))
-                    Debug.LogWarning("Invalid turn!");
+                    return;
                 else
                 {
                     board.ApplyTurn(turn);
@@ -252,12 +264,13 @@ public class GameManager : MonoBehaviour
 
                 stopwatch.Stop();
                 if (stopwatch.ElapsedMilliseconds > GameConstants.maxTurnTimeMillis)
-                    Debug.LogWarning("Too much thinking time: " + stopwatch.ElapsedMilliseconds.ToString() + " milliseconds");
+                {
+                    EndGame(Team.A, "Too much thinking time: " + stopwatch.ElapsedMilliseconds.ToString() + " milliseconds");
+                    return;
+                }
 
                 if (!board.IsTurnValid(turn, Team.B))
-                {
-                    Debug.Log("Invalid turn!");
-                }
+                    return;
                 else
                 {
                     board.ApplyTurn(turn);
@@ -274,9 +287,7 @@ public class GameManager : MonoBehaviour
 
         Team winner = board.HasGameEnded();
         if (winner != Team.none)
-        {
-            Debug.Log("Game won by player " + winner.ToString() + "!");
-        }
+            return;
     }
 
     private void UseCard(string cardName, Team team)
@@ -336,5 +347,15 @@ public class GameManager : MonoBehaviour
             }
         }
         Debug.LogError("This line should not be read");
+    }
+
+    public void EndGame(Team winner, string reason)
+    {
+        if (status == GameStatus.end)
+            return;
+
+        Debug.Log("Game won by team " + winner.ToString() + " - " + reason);
+        this.winner = winner;
+        this.status = GameStatus.end;
     }
 }
