@@ -241,7 +241,7 @@ public class GameManager : MonoBehaviour
                     return;
                 }
 
-                if (!board.IsTurnValid(turn, Team.A))
+                if (!board.ValidateTurn(turn, Team.A))
                     return;
                 else
                 {
@@ -272,7 +272,7 @@ public class GameManager : MonoBehaviour
                     return;
                 }
 
-                if (!board.IsTurnValid(turn, Team.B))
+                if (!board.ValidateTurn(turn, Team.B))
                     return;
                 else
                 {
