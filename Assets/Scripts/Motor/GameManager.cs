@@ -263,7 +263,7 @@ public class GameManager : MonoBehaviour
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
 
-                TurnResponse turn = AIA.PlayTurn();
+                TurnResponse turn = AIB.PlayTurn();
 
                 stopwatch.Stop();
                 if (stopwatch.ElapsedMilliseconds > GameConstants.maxTurnTimeMillis)

@@ -67,6 +67,17 @@ public class Board : MonoBehaviour
 
     public bool IsTurnValid(TurnResponse turn, Team team)
     {
+        string tmp = "";
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                tmp += table[i][j] == null ? "." : table[i][j].team.ToString();
+            }
+            tmp += '-';
+        }
+        Debug.Log(tmp);
+
         // The source and the destination have to be in the bounds of the map
         if (turn.source.x < 0 || turn.source.x >= 5 || turn.source.y < 0 || turn.source.y >= 5)
         {
@@ -89,6 +100,10 @@ public class Board : MonoBehaviour
         // The destination must not contain a movable Piece
         if (table[turn.destination.x][turn.destination.y] != null && table[turn.destination.x][turn.destination.y].team == team)
         {
+            Debug.Log(turn.destination.x.ToString() + " - " + turn.destination.y.ToString());
+            Debug.Log(table[turn.destination.x][turn.destination.y].type);
+            Debug.Log(table[turn.destination.x][turn.destination.y].team);
+
             GameManager.instance.EndGame(team == Team.A ? Team.B : Team.A, "The move destination contains a movable piece");
             return false;
         }
