@@ -12,8 +12,16 @@ public class AIDefault : AI
         return;
     }
 
+    // Makes the list of all the possible turns, then picks up a random one
     public override TurnResponse PlayTurn()
     {
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+            }
+        }
+
         return new TurnResponse("Elephant", new Vector2Int(0, 0), new Vector2Int(1, 1));
     }
 }
