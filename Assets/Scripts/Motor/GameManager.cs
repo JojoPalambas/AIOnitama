@@ -128,19 +128,38 @@ public class GameManager : MonoBehaviour
             Instantiate(AIPrefabB);
     }
 
-    public void DeclareAI(AI ai)
+    public Team DeclareAI(AI ai)
     {
-        if (AIA == null)
+        // If it is the first AI to be declared, its team is randomized
+        if (AIA == null && AIB == null)
         {
-            AIA = ai;
-            return;
+            if (Random.Range(0, 2) >= 1)
+            {
+                AIA = ai;
+                return Team.A;
+            }
+            else
+            {
+                AIB = ai;
+                return Team.B;
+            }
         }
-        if (AIB == null)
+        else
         {
-            AIB = ai;
-            return;
+            if (AIA == null)
+            {
+                AIA = ai;
+                return Team.A;
+            }
+            if (AIB == null)
+            {
+                AIB = ai;
+                return Team.B;
+            }
         }
+
         Debug.LogError("Too much AIs to register!");
+        return Team.none;
     }
 
     private void SetCurrentPlayer(Team player)

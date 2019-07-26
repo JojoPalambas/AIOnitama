@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3577324616858181125
+--- !u!1 &868865388647564818
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5838099251425496531}
-  - component: {fileID: 8368733680170105286}
+  - component: {fileID: 6982828648443232916}
+  - component: {fileID: 6343287938725689101}
   m_Layer: 0
-  m_Name: AIPrefabDefault
+  m_Name: AIPrefabPuppet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5838099251425496531
+--- !u!4 &6982828648443232916
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3577324616858181125}
+  m_GameObject: {fileID: 868865388647564818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,15 +31,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8368733680170105286
+--- !u!114 &6343287938725689101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3577324616858181125}
+  m_GameObject: {fileID: 868865388647564818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b9020915e3830498dee51e46a75a6c, type: 3}
+  m_Script: {fileID: 11500000, guid: 60a117d7f06a96540bb284085563dbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardName: 
+  moveSource: {x: 0, y: 0}
+  moveDestination: {x: 0, y: 0}
