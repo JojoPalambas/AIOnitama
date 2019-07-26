@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System.Diagnostics;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using Debug = UnityEngine.Debug;
 
 public enum Team
 {
@@ -214,11 +217,17 @@ public class GameManager : MonoBehaviour
         {
             if (AIA != null)
             {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
                 TurnResponse turn = AIA.PlayTurn();
+
+                stopwatch.Stop();
+                if (stopwatch.ElapsedMilliseconds > GameConstants.maxTurnTimeMillis)
+                    Debug.LogWarning("Too much thinking time: " + stopwatch.ElapsedMilliseconds.ToString() + " milliseconds");
+
                 if (!board.IsTurnValid(turn, Team.A))
-                {
-                    Debug.Log("Invalid turn!");
-                }
+                    Debug.LogWarning("Invalid turn!");
                 else
                 {
                     board.ApplyTurn(turn);
@@ -236,7 +245,15 @@ public class GameManager : MonoBehaviour
         {
             if (AIB != null)
             {
-                TurnResponse turn = AIB.PlayTurn();
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                TurnResponse turn = AIA.PlayTurn();
+
+                stopwatch.Stop();
+                if (stopwatch.ElapsedMilliseconds > GameConstants.maxTurnTimeMillis)
+                    Debug.LogWarning("Too much thinking time: " + stopwatch.ElapsedMilliseconds.ToString() + " milliseconds");
+
                 if (!board.IsTurnValid(turn, Team.B))
                 {
                     Debug.Log("Invalid turn!");
