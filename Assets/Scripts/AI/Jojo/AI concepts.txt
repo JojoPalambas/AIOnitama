@@ -16,9 +16,16 @@
 
 === V0
 
-- Returns 0 if the game is lost
+- Returns 0 if the opponent can win instantly
 - Returns 1 if the game is won
 - Returns 0.5 in any other case
+
+=== V1
+
+- Returns 0 if the opponent can win instantly
+- Returns 1 if the game is won
+- Analyses the vulnerability of the King and the Throne
+- Analyses the vulnerability of each monk
 
 ===== CHOOSE
 
@@ -26,7 +33,7 @@
 - If the critical time (default = Max(9/10 of the given time, 150 milliseconds)) is not reached, continues the traversal
 - If the critical time is reached, checks all the possibilities with the Estimate function, and returns the best TurnResponse with a positivity found with Estimate
 
-=== V1
+=== V0
 
 - If the critical time is not reached
   - Builds all the possible turns
@@ -35,3 +42,7 @@
 - If the vritical time is reached
   - Builds all the possible turns
   - Estimates the positivities of all the turns and returns the least positive, with the average of all the reversed positivities as a positivity
+
+=== V1
+
+- Actually tries to fulfill the objectives, instead of just surv

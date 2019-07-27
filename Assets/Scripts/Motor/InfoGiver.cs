@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Linker
+public abstract class InfoGiver
 {
     public static Card cardA1
     {

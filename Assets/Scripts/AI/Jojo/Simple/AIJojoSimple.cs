@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIDefault : AI
+public class AIJojoSimple : AI
 {
     private Team team;
 
@@ -14,6 +14,19 @@ public class AIDefault : AI
 
     // Makes the list of all the possible turns, then picks up a random one
     public override TurnResponse PlayTurn()
+    {
+        List<TurnResponse> possibleTurns = GetAllTurns();
+        Debug.Log(possibleTurns.Count);
+
+        if (possibleTurns.Count == 0)
+            return null;
+
+        int rand = Random.Range(0, possibleTurns.Count);
+
+        return possibleTurns[rand];
+    }
+
+    private List<TurnResponse> GetAllTurns()
     {
         List<TurnResponse> possibleTurns = new List<TurnResponse>();
 
@@ -52,11 +65,6 @@ public class AIDefault : AI
             }
         }
 
-        if (possibleTurns.Count == 0)
-            return null;
-
-        int rand = Random.Range(0, possibleTurns.Count);
-
-        return possibleTurns[rand];
+        return possibleTurns;
     }
 }

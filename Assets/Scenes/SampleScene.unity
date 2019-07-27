@@ -1320,7 +1320,7 @@ MonoBehaviour:
   board: {fileID: 897410920}
   AIPrefabA: {fileID: 4579943981734693508, guid: 1d869cf2186a3f348baffa381ffda914,
     type: 3}
-  AIPrefabB: {fileID: 4579943981734693508, guid: 1d869cf2186a3f348baffa381ffda914,
+  AIPrefabB: {fileID: 9076246499655638838, guid: 12ca50b84b9045340b13b37c6281aecf,
     type: 3}
   playerIndicatorLeftPanel: {fileID: 1221795457}
   playerIndicatorRightPanel: {fileID: 1875330912}

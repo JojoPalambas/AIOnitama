@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIGOPuppet : MonoBehaviour
 {
-    public Team team;
+    private Team team;
 
     public string cardName;
     public Vector2Int moveSource;
