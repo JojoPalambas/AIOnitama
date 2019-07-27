@@ -17,6 +17,8 @@ public class AIDefault : AI
     {
         List<TurnResponse> possibleTurns = new List<TurnResponse>();
 
+        PieceState[][] table = InfoGiver.table;
+
         // Iterates over all the table twice to find all the possible turns (yes this is disgusting, but done in 1 second)
         TurnResponse tr = null;
         for (int i = 0; i < 5; i++)
@@ -30,21 +32,21 @@ public class AIDefault : AI
                         if (team == Team.A)
                         {
                             tr = new TurnResponse(InfoGiver.cardA1.cardName, new Vector2Int(i, j), new Vector2Int(k, l));
-                            if (GameManager.instance.board.ValidateDryRun(tr, Team.A))
+                            if (InfoGiver.IsTurnValid(table, InfoGiver.cardA1, InfoGiver.cardA2, Team.A, tr))
                                 possibleTurns.Add(tr);
 
                             tr = new TurnResponse(InfoGiver.cardA2.cardName, new Vector2Int(i, j), new Vector2Int(k, l));
-                            if (GameManager.instance.board.ValidateDryRun(tr, Team.A))
+                            if (InfoGiver.IsTurnValid(table, InfoGiver.cardA1, InfoGiver.cardA2, Team.A, tr))
                                 possibleTurns.Add(tr);
                         }
                         if (team == Team.B)
                         {
                             tr = new TurnResponse(InfoGiver.cardB1.cardName, new Vector2Int(i, j), new Vector2Int(k, l));
-                            if (GameManager.instance.board.ValidateDryRun(tr, Team.B))
+                            if (InfoGiver.IsTurnValid(table, InfoGiver.cardB1, InfoGiver.cardB2, Team.B, tr))
                                 possibleTurns.Add(tr);
 
                             tr = new TurnResponse(InfoGiver.cardB2.cardName, new Vector2Int(i, j), new Vector2Int(k, l));
-                            if (GameManager.instance.board.ValidateDryRun(tr, Team.B))
+                            if (InfoGiver.IsTurnValid(table, InfoGiver.cardB1, InfoGiver.cardB2, Team.B, tr))
                                 possibleTurns.Add(tr);
                         }
                     }

@@ -145,6 +145,7 @@ public class Board : MonoBehaviour
         return true;
     }
 
+    /*
     public bool ValidateDryRun(TurnResponse turn, Team team)
     {
         if (turn == null)
@@ -191,6 +192,7 @@ public class Board : MonoBehaviour
 
         return true;
     }
+    */
 
     public void ApplyTurn(TurnResponse turn)
     {
