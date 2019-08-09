@@ -127,7 +127,7 @@ public abstract class InfoGiver
     }
 
     // Applies the given turn to the given board ; THE TURN MUST BE VALID (risk of crash or unknown behavior)
-    public void ApplyTurn(BoardState board, TurnResponse turn)
+    public BoardState ApplyTurn(BoardState board, TurnResponse turn)
     {
         BoardState ret = board.DeepCopy();
 
