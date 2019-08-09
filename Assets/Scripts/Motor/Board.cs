@@ -39,6 +39,22 @@ public class BoardState
 
         this.currentTeam = GameManager.instance.currentPlayer;
     }
+
+    // Creates a deep copy of the BoardState (the copy is only deep on the table, not the cards)
+    public BoardState DeepCopy()
+    {
+        PieceState[][] newTable = new PieceState[5][];
+        for (int i = 0; i < 5; i++)
+        {
+            newTable[i] = new PieceState[5];
+            for (int j = 0; j < 5; j++)
+            {
+                newTable[i][j] = table[i][j].Copy();
+            }
+        }
+
+        return new BoardState(newTable, cardA1, cardA2, cardB1, cardB2, freeCard, currentTeam);
+    }
 }
 
 public class Board : MonoBehaviour
@@ -183,55 +199,6 @@ public class Board : MonoBehaviour
 
         return true;
     }
-
-    /*
-    public bool ValidateDryRun(TurnResponse turn, Team team)
-    {
-        if (turn == null)
-            return false;
-        if (team == Team.none)
-            return false;
-
-
-        // The source and the destination have to be in the bounds of the map
-        if (turn.source.x < 0 || turn.source.x >= 5 || turn.source.y < 0 || turn.source.y >= 5)
-            return false;
-        if (turn.destination.x < 0 || turn.destination.x >= 5 || turn.destination.y < 0 || turn.destination.y >= 5)
-            return false;
-
-        // The source must contain a movable Piece
-        if (table[turn.source.x][turn.source.y] == null || table[turn.source.x][turn.source.y].team != team)
-            return false;
-
-        // The destination must not contain a movable Piece
-        if (table[turn.destination.x][turn.destination.y] != null && table[turn.destination.x][turn.destination.y].team == team)
-            return false;
-
-        // The player must own the designated card
-        Card playedCard = null;
-        if (team == Team.A && GameManager.instance.cardA1.cardName == turn.cardName)
-            playedCard = GameManager.instance.cardA1;
-        if (team == Team.A && GameManager.instance.cardA2.cardName == turn.cardName)
-            playedCard = GameManager.instance.cardA2;
-        if (team == Team.B && GameManager.instance.cardB1.cardName == turn.cardName)
-            playedCard = GameManager.instance.cardB1;
-        if (team == Team.B && GameManager.instance.cardB2.cardName == turn.cardName)
-            playedCard = GameManager.instance.cardB2;
-        if (playedCard == null)
-            return false;
-
-        // The move must be allowed by the designated card
-        Vector2Int moveVector = turn.destination - turn.source;
-        if (moveVector.x < -2 || moveVector.x >= 3 || moveVector.y < -2 || moveVector.y >= 3)
-            return false;
-        if (team == Team.A && playedCard.GetMoves()[moveVector.x + 2][moveVector.y + 2] == 0)
-            return false;
-        if (team == Team.B && playedCard.GetMovesReversed()[moveVector.x + 2][moveVector.y + 2] == 0)
-            return false;
-
-        return true;
-    }
-    */
 
     public void ApplyTurn(TurnResponse turn)
     {

@@ -126,6 +126,52 @@ public abstract class InfoGiver
         return Team.none;
     }
 
+    // Applies the given turn to the given board ; THE TURN MUST BE VALID (risk of crash or unknown behavior)
+    public void ApplyTurn(BoardState board, TurnResponse turn)
+    {
+        BoardState ret = board.DeepCopy();
+
+        ret.table[turn.destination.x][turn.destination.y] = ret.table[turn.source.x][turn.source.y];
+
+        // Swapping the card and changing the current team
+        if (ret.currentTeam == Team.A)
+        {
+            if (ret.cardA1.cardName == turn.cardName)
+            {
+                CardState tmp = ret.cardA1;
+                ret.cardA1 = ret.freeCard;
+                ret.freeCard = tmp;
+            }
+            else
+            {
+                CardState tmp = ret.cardA2;
+                ret.cardA2 = ret.freeCard;
+                ret.freeCard = tmp;
+            }
+
+            ret.currentTeam = Team.B;
+        }
+        else
+        {
+            if (ret.cardB1.cardName == turn.cardName)
+            {
+                CardState tmp = ret.cardB1;
+                ret.cardB1 = ret.freeCard;
+                ret.freeCard = tmp;
+            }
+            else
+            {
+                CardState tmp = ret.cardB2;
+                ret.cardB2 = ret.freeCard;
+                ret.freeCard = tmp;
+            }
+
+            ret.currentTeam = Team.A;
+        }
+
+        return ret;
+    }
+
     // CONVERTERS
 
     // Converts a Piece[][] to a PieceState[][] (therefore also makes a copy of it)
