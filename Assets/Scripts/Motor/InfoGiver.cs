@@ -38,6 +38,12 @@ public abstract class InfoGiver
         set { return; }
     }
 
+    public static BoardState board
+    {
+        get { return new BoardState(); }
+        set { return; }
+    }
+
     // UTILS
 
     // Returns true if and only if the described turn is valid
@@ -110,7 +116,7 @@ public abstract class InfoGiver
         }
         if (!kingBFound)
         {
-            return Team.B;
+            return Team.A;
         }
 
         // One of the player's pieces is on the other player's throne
@@ -127,7 +133,7 @@ public abstract class InfoGiver
     }
 
     // Applies the given turn to the given board ; THE TURN MUST BE VALID (risk of crash or unknown behavior)
-    public BoardState ApplyTurn(BoardState board, TurnResponse turn)
+    public static BoardState ApplyTurn(BoardState board, TurnResponse turn)
     {
         BoardState ret = board.DeepCopy();
 

@@ -223,8 +223,6 @@ public class GameManager : MonoBehaviour
         if (status == GameStatus.end)
             return;
 
-        Debug.Log("Next turn");
-
         if (currentPlayer == Team.A)
         {
             if (AIA != null)

@@ -49,7 +49,10 @@ public class BoardState
             newTable[i] = new PieceState[5];
             for (int j = 0; j < 5; j++)
             {
-                newTable[i][j] = table[i][j].Copy();
+                if (table[i][j] == null)
+                    newTable[i][j] = null;
+                else
+                    newTable[i][j] = table[i][j].Copy();
             }
         }
 
