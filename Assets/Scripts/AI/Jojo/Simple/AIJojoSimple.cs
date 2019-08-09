@@ -23,8 +23,8 @@ public class AIJojoSimple : AI
     {
         BoardState board = InfoGiver.board;
         List<TurnResponse> possibleTurns = GetAllTurns();
-
-        TurnResponse bestTurn = possibleTurns[0];
+        List<TurnResponse> bestTurns = new List<TurnResponse>();
+        
         float bestPositivity = 0;
 
         foreach (TurnResponse turn in possibleTurns)
@@ -34,14 +34,19 @@ public class AIJojoSimple : AI
 
             if (bestPositivity < positivity)
             {
-                bestTurn = turn;
+                bestTurns = new List<TurnResponse>();
+                bestTurns.Add(turn);
                 bestPositivity = positivity;
             }
+            else if (bestPositivity == positivity)
+                bestTurns.Add(turn);
         }
 
         Debug.Log(bestPositivity);
 
-        return bestTurn;
+        int randomIndex = Random.Range(0, bestTurns.Count);
+
+        return bestTurns[randomIndex];
     }
 
     // Analyses a given situation and returns its "positivity"
