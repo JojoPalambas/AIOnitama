@@ -15,21 +15,33 @@ public class AIJojoSimple : AI
     // Makes the list of all the possible turns, then picks up a random one
     public override TurnResponse PlayTurn()
     {
-        List<TurnResponse> possibleTurns = GetAllTurns();
-        Debug.Log(possibleTurns.Count);
-
-        if (possibleTurns.Count == 0)
-            return null;
-
-        int rand = Random.Range(0, possibleTurns.Count);
-
-        return possibleTurns[rand];
+        return DeepAnalysis();
     }
 
     // Does a width-first traversal of all the possibilities to get the best path
     private TurnResponse DeepAnalysis()
     {
+        BoardState board = InfoGiver.board;
+        List<TurnResponse> possibleTurns = GetAllTurns();
 
+        TurnResponse bestTurn = possibleTurns[0];
+        float bestPositivity = 0;
+
+        foreach (TurnResponse turn in possibleTurns)
+        {
+            BoardState newBoard = InfoGiver.ApplyTurn(board, turn);
+            float positivity = LightAnalysis(newBoard.table);
+
+            if (bestPositivity < positivity)
+            {
+                bestTurn = turn;
+                bestPositivity = positivity;
+            }
+        }
+
+        Debug.Log(bestPositivity);
+
+        return bestTurn;
     }
 
     // Analyses a given situation and returns its "positivity"
@@ -61,7 +73,7 @@ public class AIJojoSimple : AI
                 }
             }
 
-            return allies / total;
+            return (float) allies / (float) total;
         }
 
         return 0;
