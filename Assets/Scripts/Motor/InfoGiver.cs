@@ -86,7 +86,7 @@ public abstract class InfoGiver
     }
 
     // Returns Team.none if the described game has not ended, the winner in other cases
-    public Team HasGameEnded(PieceState[][] table)
+    public static Team HasGameEnded(PieceState[][] table)
     {
         // One of the players have lost their king
         bool kingAFound = false;

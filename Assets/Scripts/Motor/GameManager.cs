@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerIndicatorAIPanelPrefab;
 
     private GameStatus status;
-    private Team currentPlayer;
+    public Team currentPlayer;
 
     private Team winner;
 

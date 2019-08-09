@@ -2,6 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class BoardState
+{
+    public PieceState[][] table;
+
+    public CardState cardA1;
+    public CardState cardA2;
+    public CardState cardB1;
+    public CardState cardB2;
+    public CardState freeCard;
+
+    public Team currentTeam;
+
+    public BoardState(PieceState[][] table, CardState cardA1, CardState cardA2, CardState cardB1, CardState cardB2, CardState freeCard, Team currentTeam)
+    {
+        this.table = table;
+
+        this.cardA1 = cardA1;
+        this.cardA2 = cardA2;
+        this.cardB1 = cardB1;
+        this.cardB2 = cardB2;
+        this.freeCard = freeCard;
+
+        this.currentTeam = currentTeam;
+    }
+
+    public BoardState()
+    {
+        this.table = InfoGiver.PieceTableToPieceStateTable(Board.instance.table);
+
+        this.cardA1 = new CardState(GameManager.instance.cardA1);
+        this.cardA2 = new CardState(GameManager.instance.cardA2);
+        this.cardB1 = new CardState(GameManager.instance.cardB1);
+        this.cardB2 = new CardState(GameManager.instance.cardB2);
+        this.freeCard = new CardState(GameManager.instance.freeCard);
+
+        this.currentTeam = GameManager.instance.currentPlayer;
+    }
+}
+
 public class Board : MonoBehaviour
 {
     public static Board instance;
