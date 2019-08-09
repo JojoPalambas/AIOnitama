@@ -40,6 +40,7 @@ public abstract class InfoGiver
 
     // UTILS
 
+    // Returns true if and only if the described turn is valid
     public static bool IsTurnValid(PieceState[][] table, Card card1, Card card2, Team team, TurnResponse turn)
     {
         if (turn == null)
@@ -83,9 +84,51 @@ public abstract class InfoGiver
 
         return true;
     }
-    
+
+    // Returns Team.none if the described game has not ended, the winner in other cases
+    public Team HasGameEnded(PieceState[][] table)
+    {
+        // One of the players have lost their king
+        bool kingAFound = false;
+        bool kingBFound = false;
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (table[i][j] != null && table[i][j].type == PieceType.king)
+                {
+                    if (table[i][j].team == Team.A)
+                        kingAFound = true;
+                    if (table[i][j].team == Team.B)
+                        kingBFound = true;
+                }
+            }
+        }
+        if (!kingAFound)
+        {
+            return Team.B;
+        }
+        if (!kingBFound)
+        {
+            return Team.B;
+        }
+
+        // One of the player's pieces is on the other player's throne
+        if (table[2][0] != null && table[2][0].team == Team.B)
+        {
+            return Team.B;
+        }
+        if (table[2][4] != null && table[2][4].team == Team.A)
+        {
+            return Team.B;
+        }
+
+        return Team.none;
+    }
+
     // CONVERTERS
 
+    // Converts a Piece[][] to a PieceState[][] (therefore also makes a copy of it)
     public static PieceState[][] PieceTableToPieceStateTable(Piece[][] table)
     {
         PieceState[][] ret = new PieceState[5][];
