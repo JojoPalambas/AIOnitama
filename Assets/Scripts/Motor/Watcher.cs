@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class PieceState
 {
-    public readonly Team team;
-    public readonly PieceType type;
+    public Team team;
+    public PieceType type;
 
     public PieceState(Piece piece)
     {
         team = piece.team;
         type = piece.type;
+    }
+
+    public PieceState(Team team, PieceType type)
+    {
+        this.team = team;
+        this.type = type;
     }
 
     public bool IsEqual(PieceState pieceState)
@@ -20,12 +26,17 @@ public class PieceState
 
         return true;
     }
+
+    public PieceState Copy()
+    {
+        return new PieceState(team, type);
+    }
 }
 
 public class CardState
 {
-    private readonly string cardName;
-    private readonly int[][] moves;
+    public readonly string cardName;
+    public readonly int[][] moves;
 
     public CardState(Card card)
     {
@@ -40,6 +51,12 @@ public class CardState
                 moves[i][j] = card.GetMoves()[i][j];
             }
         }
+    }
+
+    public CardState(string cardName, int[][] moves)
+    {
+        this.cardName = cardName;
+        this.moves = moves;
     }
 
     public bool IsEqual(CardState cardState)

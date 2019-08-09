@@ -10,7 +10,7 @@ public class AIGODefault : MonoBehaviour
     void Start()
     {
         team = GameManager.instance.DeclareAI(new AIDefault());
-        name += team.ToString();
+        name += " - " + team.ToString();
     }
 
     // Update is called once per frame
