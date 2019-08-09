@@ -16,7 +16,7 @@ public enum GameStatus
 {
     firstFrame,
     waiting,
-    playing,
+    autoplaying,
     end
 }
 
@@ -82,20 +82,21 @@ public class GameManager : MonoBehaviour
         {
             status = GameStatus.waiting;
 
-            // 50% chance to switch the two AIs
-            if (Random.Range(0, 2) >= 1)
-            {
-                AI tmp = AIA;
-                AIA = AIB;
-                AIB = tmp;
-            }
-
             if (AIA != null)
                 AIA.Init(Team.A);
             if (AIB != null)
                 AIB.Init(Team.B);
 
             SetCurrentPlayer(Team.A);
+        }
+
+        if (status == GameStatus.waiting)
+        {
+        }
+
+        if (status == GameStatus.autoplaying)
+        {
+            NextTurn();
         }
     }
 
@@ -222,6 +223,9 @@ public class GameManager : MonoBehaviour
     {
         if (status == GameStatus.end)
             return;
+
+        if (!GameConstants.manualMode)
+            status = GameStatus.autoplaying;
 
         if (currentPlayer == Team.A)
         {
