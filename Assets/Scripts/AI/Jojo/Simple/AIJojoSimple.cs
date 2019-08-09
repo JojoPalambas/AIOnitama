@@ -26,6 +26,47 @@ public class AIJojoSimple : AI
         return possibleTurns[rand];
     }
 
+    // Does a width-first traversal of all the possibilities to get the best path
+    private TurnResponse DeepAnalysis()
+    {
+
+    }
+
+    // Analyses a given situation and returns its "positivity"
+    // Game lost -> 0
+    // Game won -> 1
+    // Other cases -> Proportion of allied pieces in all the pieces in game
+    private float LightAnalysis(PieceState[][] table)
+    {
+        Team winner = InfoGiver.HasGameEnded(table);
+        if (winner == team)
+            return 1;
+
+        if (winner == Team.none)
+        {
+            int allies = 0;
+            int total = 0;
+
+            // Counting the allied pieces and all the pieces
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (table[i][j] != null)
+                    {
+                        total += 1;
+                        if (table[i][j].team == team)
+                            allies += 1;
+                    }
+                }
+            }
+
+            return allies / total;
+        }
+
+        return 0;
+    }
+
     private List<TurnResponse> GetAllTurns()
     {
         List<TurnResponse> possibleTurns = new List<TurnResponse>();
