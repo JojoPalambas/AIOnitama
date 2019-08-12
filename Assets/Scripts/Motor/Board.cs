@@ -278,16 +278,16 @@ public class Board : MonoBehaviour
             return Team.B;
         }
 
-        // One of the player's pieces is on the other player's throne
-        if (table[2][0] != null && table[2][0].team == Team.B)
+        // One of the player's kings is on the other player's throne
+        if (table[2][0] != null && table[2][0].team == Team.B && table[2][0].type == PieceType.king)
         {
             GameManager.instance.EndGame(Team.B, "Throne A taken");
             return Team.B;
         }
-        if (table[2][4] != null && table[2][4].team == Team.A)
+        if (table[2][4] != null && table[2][4].team == Team.A && table[2][4].type == PieceType.king)
         {
             GameManager.instance.EndGame(Team.A, "Throne B taken");
-            return Team.B;
+            return Team.A;
         }
 
         return Team.none;

@@ -120,13 +120,13 @@ public abstract class InfoGiver
         }
 
         // One of the player's pieces is on the other player's throne
-        if (table[2][0] != null && table[2][0].team == Team.B)
+        if (table[2][0] != null && table[2][0].team == Team.B && table[2][0].type == PieceType.king)
         {
             return Team.B;
         }
-        if (table[2][4] != null && table[2][4].team == Team.A)
+        if (table[2][4] != null && table[2][4].team == Team.A && table[2][4].type == PieceType.king)
         {
-            return Team.B;
+            return Team.A;
         }
 
         return Team.none;
