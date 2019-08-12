@@ -24,7 +24,7 @@ public class AIJojoSimple : AI
         BoardState board = InfoGiver.board;
         List<TurnResponse> possibleTurns = GetAllTurns();
         List<TurnResponse> bestTurns = new List<TurnResponse>();
-        
+
         float bestPositivity = 0;
 
         foreach (TurnResponse turn in possibleTurns)
@@ -42,7 +42,8 @@ public class AIJojoSimple : AI
                 bestTurns.Add(turn);
         }
 
-        Debug.Log(bestPositivity);
+        if (bestTurns.Count == 0)
+            return null;
 
         int randomIndex = Random.Range(0, bestTurns.Count);
 
@@ -96,6 +97,7 @@ public class AIJojoSimple : AI
         {
             for (int j = 0; j < 5; j++)
             {
+
                 for (int k = 0; k < 5; k++)
                 {
                     for (int l = 0; l < 5; l++)
@@ -126,5 +128,10 @@ public class AIJojoSimple : AI
         }
 
         return possibleTurns;
+    }
+
+    public override string name
+    {
+        get { return "AI Jojo Simple"; }
     }
 }

@@ -19,6 +19,8 @@ public class TurnResponse
 
 public abstract class AI
 {
+    public abstract string name { get; }
+
     public abstract void Init(Team team);
     public abstract TurnResponse PlayTurn();
 }

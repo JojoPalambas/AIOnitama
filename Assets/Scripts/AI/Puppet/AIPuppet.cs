@@ -24,4 +24,9 @@ public class AIPuppet : AI
     {
         return new TurnResponse(master.cardName, master.moveSource, master.moveDestination);
     }
+
+    public override string name
+    {
+        get { return "Puppet"; }
+    }
 }

@@ -61,4 +61,9 @@ public class AIDefault : AI
 
         return possibleTurns[rand];
     }
+
+    public override string name
+    {
+        get { return "Default AI"; }
+    }
 }

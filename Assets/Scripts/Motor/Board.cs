@@ -80,7 +80,10 @@ public class Board : MonoBehaviour
             return;
         }
         instance = this;
+    }
 
+    public void Init()
+    {
         InitTable();
     }
 
@@ -91,6 +94,24 @@ public class Board : MonoBehaviour
 
     public void InitTable()
     {
+        // If the table is not empty, empty it
+        if (table != null)
+        {
+            for (int i = 0; i < table.Length; i++)
+            {
+                if (table[i] != null)
+                {
+                    for (int j = 0; j < table[i].Length; j++)
+                    {
+                        if (table[i][j] != null)
+                            Destroy(table[i][j].gameObject);
+                    }
+                    table[i] = null;
+                }
+            }
+            table = null;
+        }
+
         // Creating the empty table
         table = new Piece[5][];
 

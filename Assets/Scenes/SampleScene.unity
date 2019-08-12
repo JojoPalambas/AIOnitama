@@ -1322,6 +1322,8 @@ MonoBehaviour:
     type: 3}
   AIPrefabB: {fileID: 9076246499655638838, guid: 12ca50b84b9045340b13b37c6281aecf,
     type: 3}
+  AIObjectA: {fileID: 0}
+  AIObjectB: {fileID: 0}
   playerIndicatorLeftPanel: {fileID: 1221795457}
   playerIndicatorRightPanel: {fileID: 1875330912}
   playerIndicatorAPanelPrefab: {fileID: 188494090398441142, guid: 51a0496725457b14785695e009b85614,
@@ -1332,6 +1334,7 @@ MonoBehaviour:
     type: 3}
   playerIndicatorAIPanelPrefab: {fileID: 7332239863718836798, guid: 1dc9d9d5bd157c54e9b11b4d42382212,
     type: 3}
+  currentPlayer: 0
 --- !u!4 &1311572634
 Transform:
   m_ObjectHideFlags: 0

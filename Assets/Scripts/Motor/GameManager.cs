@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
     public GameObject AIPrefabA;
     public GameObject AIPrefabB;
 
+    public GameObject AIObjectA;
+    public GameObject AIObjectB;
+
     public GameObject playerIndicatorLeftPanel;
     public GameObject playerIndicatorRightPanel;
 
@@ -52,6 +55,12 @@ public class GameManager : MonoBehaviour
     public Team currentPlayer;
 
     private Team winner;
+    private int gamesPlayed = 0;
+
+    private string AIXName = "";
+    private int AIXWins = 0;
+    private string AIYName = "";
+    private int AIYWins = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -63,8 +72,14 @@ public class GameManager : MonoBehaviour
         }
         instance = this;
 
-        status = GameStatus.firstFrame;
+        Init();
+    }
 
+    private void Init()
+    {
+        status = GameStatus.firstFrame;
+        currentPlayer = Team.A;
+        board.Init();
         InitCards();
         InitAIs();
     }
@@ -80,7 +95,10 @@ public class GameManager : MonoBehaviour
 
         if (status == GameStatus.firstFrame)
         {
-            status = GameStatus.waiting;
+            if (!GameConstants.manualMode && gamesPlayed > 0)
+                status = GameStatus.autoplaying;
+            else
+                status = GameStatus.waiting;
 
             if (AIA != null)
                 AIA.Init(Team.A);
@@ -135,10 +153,18 @@ public class GameManager : MonoBehaviour
 
     private void InitAIs()
     {
+        AIA = null;
+        AIB = null;
+
+        if (AIObjectA != null)
+            Destroy(AIObjectA);
+        if (AIObjectB != null)
+            Destroy(AIObjectB);
+
         if (AIPrefabA != null)
-            Instantiate(AIPrefabA);
+            AIObjectA = Instantiate(AIPrefabA);
         if (AIPrefabB != null)
-            Instantiate(AIPrefabB);
+            AIObjectB = Instantiate(AIPrefabB);
     }
 
     public Team DeclareAI(AI ai)
@@ -148,11 +174,15 @@ public class GameManager : MonoBehaviour
         {
             if (Random.Range(0, 2) >= 1)
             {
+                if (AIXName == "")
+                    AIXName = ai.name;
                 AIA = ai;
                 return Team.A;
             }
             else
             {
+                if (AIYName == "")
+                    AIYName = ai.name;
                 AIB = ai;
                 return Team.B;
             }
@@ -161,11 +191,15 @@ public class GameManager : MonoBehaviour
         {
             if (AIA == null)
             {
+                if (AIXName == "")
+                    AIXName = ai.name;
                 AIA = ai;
                 return Team.A;
             }
             if (AIB == null)
             {
+                if (AIYName == "")
+                    AIYName = ai.name;
                 AIB = ai;
                 return Team.B;
             }
@@ -363,8 +397,38 @@ public class GameManager : MonoBehaviour
         if (status == GameStatus.end)
             return;
 
-        Debug.Log("Game won by team " + winner.ToString() + " - " + reason);
         this.winner = winner;
-        this.status = GameStatus.end;
+        CountVictory(winner);
+        gamesPlayed += 1;
+
+        Debug.Log("Game won by team " + winner.ToString() + " - " + reason);
+
+        if (gamesPlayed < GameConstants.gamesToPlay)
+        {
+            Init();
+        }
+        else
+        {
+            Debug.Log(AIXName + ": " + AIXWins.ToString() + " wins - " + AIYName + ": " + AIYWins.ToString() + " wins");
+            this.status = GameStatus.end;
+        }
+    }
+
+    private void CountVictory(Team winner)
+    {
+        if (winner == Team.A)
+        {
+            if (AIA.name == AIXName)
+                AIXWins += 1;
+            else if (AIA.name == AIYName)
+                AIYWins += 1;
+        }
+        else
+        {
+            if (AIB.name == AIXName)
+                AIXWins += 1;
+            else if (AIB.name == AIYName)
+                AIYWins += 1;
+        }
     }
 }
