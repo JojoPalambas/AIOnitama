@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
             AIObjectB = Instantiate(AIPrefabB);
     }
 
-    public Team DeclareAI(AI ai)
+    public Team DeclareAI(AI ai, GameObject declarer)
     {
         // If it is the first AI to be declared, its team is randomized
         if (AIA == null && AIB == null)
@@ -177,6 +177,7 @@ public class GameManager : MonoBehaviour
                 if (AIXName == "")
                     AIXName = ai.name;
                 AIA = ai;
+                declarer.name = ai.name + " - A";
                 return Team.A;
             }
             else
@@ -184,6 +185,7 @@ public class GameManager : MonoBehaviour
                 if (AIYName == "")
                     AIYName = ai.name;
                 AIB = ai;
+                declarer.name = ai.name + " - B";
                 return Team.B;
             }
         }
@@ -194,6 +196,7 @@ public class GameManager : MonoBehaviour
                 if (AIXName == "")
                     AIXName = ai.name;
                 AIA = ai;
+                declarer.name = ai.name + " - A";
                 return Team.A;
             }
             if (AIB == null)
@@ -201,6 +204,7 @@ public class GameManager : MonoBehaviour
                 if (AIYName == "")
                     AIYName = ai.name;
                 AIB = ai;
+                declarer.name = ai.name + " - B";
                 return Team.B;
             }
         }

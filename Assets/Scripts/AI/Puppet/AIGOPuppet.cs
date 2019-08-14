@@ -13,8 +13,7 @@ public class AIGOPuppet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        team = GameManager.instance.DeclareAI(new AIPuppet(this));
-        name += " - " + team.ToString();
+        team = GameManager.instance.DeclareAI(new AIPuppet(this), gameObject);
     }
 
     // Update is called once per frame

@@ -9,8 +9,7 @@ public class AIGOJojoSimple : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        team = GameManager.instance.DeclareAI(new AIJojoSimple());
-        name += " - " + team.ToString();
+        team = GameManager.instance.DeclareAI(new AIJojoSimple(), gameObject);
     }
 
     // Update is called once per frame

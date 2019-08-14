@@ -9,8 +9,7 @@ public class AIGODefault : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        team = GameManager.instance.DeclareAI(new AIDefault());
-        name += " - " + team.ToString();
+        team = GameManager.instance.DeclareAI(new AIDefault(), gameObject);
     }
 
     // Update is called once per frame
