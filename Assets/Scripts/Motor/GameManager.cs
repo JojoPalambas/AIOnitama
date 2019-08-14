@@ -126,7 +126,15 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            int cardIndex = Random.Range(0, cardPrefabs.Count);
+            int cardIndex = -1;
+            while (cardIndex == -1)
+            {
+                cardIndex = Random.Range(0, cardPrefabs.Count);
+                for (int j = 0; j < i; j++)
+                    if (chosenCardsIndexes[j] == cardIndex)
+                        cardIndex = -1;
+            }
+            
             chosenCardsIndexes[i] = cardIndex;
         }
 
