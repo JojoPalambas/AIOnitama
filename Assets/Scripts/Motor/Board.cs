@@ -6,15 +6,15 @@ public class BoardState
 {
     public PieceState[][] table;
 
-    public CardState cardA1;
-    public CardState cardA2;
-    public CardState cardB1;
-    public CardState cardB2;
-    public CardState freeCard;
+    public Card cardA1;
+    public Card cardA2;
+    public Card cardB1;
+    public Card cardB2;
+    public Card freeCard;
 
     public Team currentTeam;
 
-    public BoardState(PieceState[][] table, CardState cardA1, CardState cardA2, CardState cardB1, CardState cardB2, CardState freeCard, Team currentTeam)
+    public BoardState(PieceState[][] table, Card cardA1, Card cardA2, Card cardB1, Card cardB2, Card freeCard, Team currentTeam)
     {
         this.table = table;
 
@@ -31,11 +31,11 @@ public class BoardState
     {
         this.table = InfoGiver.PieceTableToPieceStateTable(Board.instance.table);
 
-        this.cardA1 = new CardState(GameManager.instance.cardA1);
-        this.cardA2 = new CardState(GameManager.instance.cardA2);
-        this.cardB1 = new CardState(GameManager.instance.cardB1);
-        this.cardB2 = new CardState(GameManager.instance.cardB2);
-        this.freeCard = new CardState(GameManager.instance.freeCard);
+        this.cardA1 = GameManager.instance.cardA1;
+        this.cardA2 = GameManager.instance.cardA2;
+        this.cardB1 = GameManager.instance.cardB1;
+        this.cardB2 = GameManager.instance.cardB2;
+        this.freeCard = GameManager.instance.freeCard;
 
         this.currentTeam = GameManager.instance.currentPlayer;
     }

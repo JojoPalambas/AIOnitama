@@ -144,13 +144,13 @@ public abstract class InfoGiver
         {
             if (ret.cardA1.cardName == turn.cardName)
             {
-                CardState tmp = ret.cardA1;
+                Card tmp = ret.cardA1;
                 ret.cardA1 = ret.freeCard;
                 ret.freeCard = tmp;
             }
             else
             {
-                CardState tmp = ret.cardA2;
+                Card tmp = ret.cardA2;
                 ret.cardA2 = ret.freeCard;
                 ret.freeCard = tmp;
             }
@@ -161,13 +161,13 @@ public abstract class InfoGiver
         {
             if (ret.cardB1.cardName == turn.cardName)
             {
-                CardState tmp = ret.cardB1;
+                Card tmp = ret.cardB1;
                 ret.cardB1 = ret.freeCard;
                 ret.freeCard = tmp;
             }
             else
             {
-                CardState tmp = ret.cardB2;
+                Card tmp = ret.cardB2;
                 ret.cardB2 = ret.freeCard;
                 ret.freeCard = tmp;
             }

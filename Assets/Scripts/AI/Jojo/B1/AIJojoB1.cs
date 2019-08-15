@@ -11,35 +11,49 @@ public class AIJojoB1 : AI
         this.team = team;
         return;
     }
-
-    // Makes the list of all the possible turns, then picks up a random one
+    
     public override TurnResponse PlayTurn()
     {
-        return DeepAnalysis();
+        BoardState board = InfoGiver.board;
+
+        System.Tuple<TurnResponse, TurnResponse> t = null;
+
+        return DeepAnalysis(board, team, 2).Item1;
     }
 
-    // Does a width-first traversal of all the possibilities to get the best path
-    private TurnResponse DeepAnalysis()
+    // FIXME Essayer en retournant la bestPositivity, la worstPositivity et la moyenne
+    // Does a depth-first traversal of all the possibilities (with a max depth) to get the best path
+    private System.Tuple<TurnResponse, float> DeepAnalysis(BoardState board, Team team, int depth)
     {
-        BoardState board = InfoGiver.board;
-        List<TurnResponse> possibleTurns = GetAllTurns();
-        List<TurnResponse> bestTurns = new List<TurnResponse>();
+        Team winner = InfoGiver.HasGameEnded(board.table);
+        if (winner != Team.none)
+            return new System.Tuple<TurnResponse, float>(null, winner == team ? 1 : 0);
 
+        List<TurnResponse> possibleTurns = GetAllTurns(board, team);
+
+        List<System.Tuple<TurnResponse, float>> bestTurns = new List<System.Tuple<TurnResponse, float>>();
         float bestPositivity = 0;
-
         foreach (TurnResponse turn in possibleTurns)
         {
             BoardState newBoard = InfoGiver.ApplyTurn(board, turn);
-            float positivity = LightAnalysis(newBoard.table);
+            float positivity = 0;
+
+            if (depth <= 0)
+                positivity = LightAnalysis(newBoard.table);
+            else
+            {
+                System.Tuple<TurnResponse, float> recursiveResponse = DeepAnalysis(newBoard, team == Team.A ? Team.B : Team.A, depth - 1);
+                positivity = 1 - recursiveResponse.Item2;
+            }
 
             if (bestPositivity < positivity)
             {
-                bestTurns = new List<TurnResponse>();
-                bestTurns.Add(turn);
+                bestTurns = new List<System.Tuple<TurnResponse, float>>();
+                bestTurns.Add(new System.Tuple<TurnResponse, float>(turn, positivity));
                 bestPositivity = positivity;
             }
             else if (bestPositivity == positivity)
-                bestTurns.Add(turn);
+                bestTurns.Add(new System.Tuple<TurnResponse, float>(turn, positivity));
         }
 
         if (bestTurns.Count == 0)
@@ -85,11 +99,11 @@ public class AIJojoB1 : AI
         return 0;
     }
 
-    private List<TurnResponse> GetAllTurns()
+    private List<TurnResponse> GetAllTurns(BoardState board, Team team)
     {
         List<TurnResponse> possibleTurns = new List<TurnResponse>();
 
-        PieceState[][] table = InfoGiver.table;
+        PieceState[][] table = board.table;
 
         // Iterates over all the table twice to find all the possible turns (yes this is disgusting, but done in 1 second)
         TurnResponse tr = null;
@@ -104,8 +118,8 @@ public class AIJojoB1 : AI
                     {
                         if (team == Team.A)
                         {
-                            tr = new TurnResponse(InfoGiver.cardA1.cardName, new Vector2Int(i, j), new Vector2Int(k, l));
-                            if (InfoGiver.IsTurnValid(table, InfoGiver.cardA1, InfoGiver.cardA2, Team.A, tr))
+                            tr = new TurnResponse(board.cardA1.cardName, new Vector2Int(i, j), new Vector2Int(k, l));
+                            if (InfoGiver.IsTurnValid(table, board.cardA1, board.cardA2, Team.A, tr))
                                 possibleTurns.Add(tr);
 
                             tr = new TurnResponse(InfoGiver.cardA2.cardName, new Vector2Int(i, j), new Vector2Int(k, l));

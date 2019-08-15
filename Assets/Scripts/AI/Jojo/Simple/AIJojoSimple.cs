@@ -11,14 +11,13 @@ public class AIJojoSimple : AI
         this.team = team;
         return;
     }
-
-    // Makes the list of all the possible turns, then picks up a random one
+    
     public override TurnResponse PlayTurn()
     {
         return DeepAnalysis();
     }
 
-    // Does a width-first traversal of all the possibilities to get the best path
+    // Analyses all the possible turns and returns the most positive one
     private TurnResponse DeepAnalysis()
     {
         BoardState board = InfoGiver.board;
