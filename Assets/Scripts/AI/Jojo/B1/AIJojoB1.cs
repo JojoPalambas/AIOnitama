@@ -99,51 +99,6 @@ public class AIJojoB1 : AI
         return 0;
     }
 
-    private List<TurnResponse> OLDGetAllTurns(BoardState board, Team team)
-    {
-        List<TurnResponse> possibleTurns = new List<TurnResponse>();
-
-        PieceState[][] table = board.table;
-
-        // Iterates over all the table twice to find all the possible turns (yes this is disgusting, but done in 1 second)
-        TurnResponse tr = null;
-        for (int i = 0; i < 5; i++)
-        {
-            for (int j = 0; j < 5; j++)
-            {
-
-                for (int k = 0; k < 5; k++)
-                {
-                    for (int l = 0; l < 5; l++)
-                    {
-                        if (team == Team.A)
-                        {
-                            tr = new TurnResponse(board.cardA1.cardName, new Vector2Int(i, j), new Vector2Int(k, l));
-                            if (InfoGiver.IsTurnValid(table, board.cardA1, board.cardA2, Team.A, tr))
-                                possibleTurns.Add(tr);
-
-                            tr = new TurnResponse(InfoGiver.cardA2.cardName, new Vector2Int(i, j), new Vector2Int(k, l));
-                            if (InfoGiver.IsTurnValid(table, InfoGiver.cardA1, InfoGiver.cardA2, Team.A, tr))
-                                possibleTurns.Add(tr);
-                        }
-                        if (team == Team.B)
-                        {
-                            tr = new TurnResponse(InfoGiver.cardB1.cardName, new Vector2Int(i, j), new Vector2Int(k, l));
-                            if (InfoGiver.IsTurnValid(table, InfoGiver.cardB1, InfoGiver.cardB2, Team.B, tr))
-                                possibleTurns.Add(tr);
-
-                            tr = new TurnResponse(InfoGiver.cardB2.cardName, new Vector2Int(i, j), new Vector2Int(k, l));
-                            if (InfoGiver.IsTurnValid(table, InfoGiver.cardB1, InfoGiver.cardB2, Team.B, tr))
-                                possibleTurns.Add(tr);
-                        }
-                    }
-                }
-            }
-        }
-
-        return possibleTurns;
-    }
-
     private List<TurnResponse> GetAllTurns(BoardState board, Team team)
     {
         List<TurnResponse> possibleTurns = new List<TurnResponse>();
