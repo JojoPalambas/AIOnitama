@@ -99,7 +99,7 @@ public class AIJojoB1 : AI
         return 0;
     }
 
-    private List<TurnResponse> GetAllTurns(BoardState board, Team team)
+    private List<TurnResponse> OLDGetAllTurns(BoardState board, Team team)
     {
         List<TurnResponse> possibleTurns = new List<TurnResponse>();
 
@@ -136,6 +136,69 @@ public class AIJojoB1 : AI
                             if (InfoGiver.IsTurnValid(table, InfoGiver.cardB1, InfoGiver.cardB2, Team.B, tr))
                                 possibleTurns.Add(tr);
                         }
+                    }
+                }
+            }
+        }
+
+        return possibleTurns;
+    }
+
+    private List<TurnResponse> GetAllTurns(BoardState board, Team team)
+    {
+        List<TurnResponse> possibleTurns = new List<TurnResponse>();
+
+        PieceState[][] table = board.table;
+
+        // Making the list of all the moves allowed by card 1;
+        Card card1 = team == Team.A ? board.cardA1 : board.cardB1;
+        int[][] card1MovesTable = team == Team.A ? card1.GetMoves() : card1.GetMovesReversed();
+        List<Vector2Int> card1Moves = new List<Vector2Int>();
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (card1MovesTable[i][j] == 1)
+                    card1Moves.Add(new Vector2Int(i, j));
+            }
+        }
+
+        // Making the list of all the moves allowed by card 2;
+        Card card2 = team == Team.A ? board.cardA2 : board.cardB2;
+        int[][] card2MovesTable = team == Team.A ? card2.GetMoves() : card2.GetMovesReversed();
+        List<Vector2Int> card2Moves = new List<Vector2Int>();
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (card2MovesTable[i][j] == 1)
+                    card2Moves.Add(new Vector2Int(i, j));
+            }
+        }
+
+        // Going through the table of the board to find allied pieces and check their possible moves
+        TurnResponse tr = null;
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (table[i][j] != null && table[i][j].team == team)
+                {
+                    // Going through card1 moves and trying them all
+                    foreach (Vector2Int vect in card1Moves)
+                    {
+                        // At the end of the line, the "-2"s are added to center vect on (2, 2)
+                        tr = new TurnResponse(card1.cardName, new Vector2Int(i, j), new Vector2Int(i - 2, j - 2) + vect);
+                        if (InfoGiver.IsTurnValid(table, card1, card2, team, tr))
+                            possibleTurns.Add(tr);
+                    }
+                    // Going through card2 moves and trying them all
+                    foreach (Vector2Int vect in card2Moves)
+                    {
+                        // At the end of the line, the "-2"s are added to center vect on (2, 2)
+                        tr = new TurnResponse(card2.cardName, new Vector2Int(i, j), new Vector2Int(i - 2, j - 2) + vect);
+                        if (InfoGiver.IsTurnValid(table, card1, card2, team, tr))
+                            possibleTurns.Add(tr);
                     }
                 }
             }
