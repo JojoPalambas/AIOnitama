@@ -18,7 +18,7 @@ public class AIJojoB1 : AI
 
         System.Tuple<TurnResponse, TurnResponse> t = null;
 
-        return DeepAnalysis(board, team, 2).Item1;
+        return DeepAnalysis(board, team, 1).Item1;
     }
 
     // FIXME Essayer en retournant la bestPositivity, la worstPositivity et la moyenne

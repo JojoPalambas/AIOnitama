@@ -100,11 +100,6 @@ public class GameManager : MonoBehaviour
             else
                 status = GameStatus.waiting;
 
-            if (AIA != null)
-                AIA.Init(Team.A);
-            if (AIB != null)
-                AIB.Init(Team.B);
-
             SetCurrentPlayer(Team.A);
         }
 
@@ -185,6 +180,7 @@ public class GameManager : MonoBehaviour
                 if (AIXName == "")
                     AIXName = ai.name;
                 AIA = ai;
+                AIA.Init(Team.A);
                 declarer.name = ai.name + " - A";
                 return Team.A;
             }
@@ -193,6 +189,7 @@ public class GameManager : MonoBehaviour
                 if (AIYName == "")
                     AIYName = ai.name;
                 AIB = ai;
+                AIB.Init(Team.B);
                 declarer.name = ai.name + " - B";
                 return Team.B;
             }
@@ -204,6 +201,7 @@ public class GameManager : MonoBehaviour
                 if (AIXName == "")
                     AIXName = ai.name;
                 AIA = ai;
+                AIA.Init(Team.A);
                 declarer.name = ai.name + " - A";
                 return Team.A;
             }
@@ -212,6 +210,7 @@ public class GameManager : MonoBehaviour
                 if (AIYName == "")
                     AIYName = ai.name;
                 AIB = ai;
+                AIB.Init(Team.B);
                 declarer.name = ai.name + " - B";
                 return Team.B;
             }
