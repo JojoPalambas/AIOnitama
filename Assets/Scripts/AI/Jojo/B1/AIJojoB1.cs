@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class AIJojoB1 : AI
 {
+    private List<string> linesToWrite = new List<string>();
+    private bool isOutputNeeded = false;
+
     private Team team;
+
+    private int startingDepth = 1;
 
     public override void Init(Team team)
     {
@@ -18,32 +23,52 @@ public class AIJojoB1 : AI
 
         System.Tuple<TurnResponse, TurnResponse> t = null;
 
-        return DeepAnalysis(board, team, 1).Item1;
-    }
+        if (isOutputNeeded)
+        {
+            linesToWrite = new List<string>();
+            System.IO.File.WriteAllText(@"E:\Données\Programmes\Unity\AIOnitama\Gabz_Output\out.txt", string.Empty);
+        }
 
-    // FIXME Essayer en retournant la bestPositivity, la worstPositivity et la moyenne
+        TurnResponse ret = DeepAnalysis(board, team, startingDepth).Item1;
+
+        if (isOutputNeeded)
+            System.IO.File.WriteAllLines(@"E:\Données\Programmes\Unity\AIOnitama\Gabz_Output\out.txt", linesToWrite.ToArray());
+
+        return ret;
+    }
+    
     // Does a depth-first traversal of all the possibilities (with a max depth) to get the best path
     private System.Tuple<TurnResponse, float> DeepAnalysis(BoardState board, Team team, int depth)
     {
+        // If the game is won or lost, immediately return null and the positivity
         Team winner = InfoGiver.HasGameEnded(board.table);
         if (winner != Team.none)
             return new System.Tuple<TurnResponse, float>(null, winner == team ? 1 : 0);
-
+        
         List<TurnResponse> possibleTurns = GetAllTurns(board, team);
 
+        // Makes the list of all the equivalent best turns, by traversing the possible turns and analysing their outcomes
         List<System.Tuple<TurnResponse, float>> bestTurns = new List<System.Tuple<TurnResponse, float>>();
         float bestPositivity = 0;
         foreach (TurnResponse turn in possibleTurns)
         {
             BoardState newBoard = InfoGiver.ApplyTurn(board, turn);
-            float positivity = 0;
 
+            float positivity = 0;
             if (depth <= 0)
-                positivity = LightAnalysis(newBoard.table);
+                positivity = LightAnalysis(newBoard.table, team);
             else
             {
                 System.Tuple<TurnResponse, float> recursiveResponse = DeepAnalysis(newBoard, team == Team.A ? Team.B : Team.A, depth - 1);
                 positivity = 1 - recursiveResponse.Item2;
+            }
+            
+            if (isOutputNeeded)
+            {
+                linesToWrite.Add("Depth: " + depth.ToString() + " - Team " + team.ToString()
+                    + " - " + turn.cardName + ": (" + turn.source.x + ", " + turn.source.y + ") -> (" + turn.destination.x + ", " + turn.destination.y + ") - Postivity: " + positivity.ToString());
+                for (int i = 0; i < depth; i++)
+                    linesToWrite.Add("   ---");
             }
 
             if (bestPositivity < positivity)
@@ -60,7 +85,7 @@ public class AIJojoB1 : AI
             return null;
 
         int randomIndex = Random.Range(0, bestTurns.Count);
-
+        
         return bestTurns[randomIndex];
     }
 
@@ -68,7 +93,7 @@ public class AIJojoB1 : AI
     // Game lost -> 0
     // Game won -> 1
     // Other cases -> Proportion of allied pieces in all the pieces in game
-    private float LightAnalysis(PieceState[][] table)
+    private float LightAnalysis(PieceState[][] table, Team team)
     {
         Team winner = InfoGiver.HasGameEnded(table);
         if (winner == team)

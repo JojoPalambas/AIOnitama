@@ -138,6 +138,7 @@ public abstract class InfoGiver
         BoardState ret = board.DeepCopy();
 
         ret.table[turn.destination.x][turn.destination.y] = ret.table[turn.source.x][turn.source.y];
+        ret.table[turn.source.x][turn.source.y] = null;
 
         // Swapping the card and changing the current team
         if (ret.currentTeam == Team.A)

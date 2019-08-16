@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
         // If it is the first AI to be declared, its team is randomized
         if (AIA == null && AIB == null)
         {
-            if (Random.Range(0, 2) >= 1)
+            if (Random.Range(0f, 1f) > 0.5)
             {
                 if (AIXName == "")
                     AIXName = ai.name;

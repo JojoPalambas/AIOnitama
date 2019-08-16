@@ -1,0 +1,117 @@
+Depth: 0 - Team B - Frog: (0, 2) -> (1, 1) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (0, 2) -> (2, 2) - Postivity: 0,4444444
+Depth: 0 - Team B - Cobra: (0, 2) -> (1, 2) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (0, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 4) -> (1, 4) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (2, 4) -> (3, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (2, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (3, 4) -> (4, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (3, 4) -> (2, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (4, 4) -> (3, 3) - Postivity: 0,5
+Depth: 1 - Team A - Rabbit: (1, 1) -> (2, 2) - Postivity: 0,5
+   ---
+Depth: 0 - Team B - Frog: (0, 2) -> (1, 1) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (0, 2) -> (2, 2) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 2) -> (1, 2) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (0, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 4) -> (1, 4) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (2, 4) -> (3, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (2, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (3, 4) -> (4, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (3, 4) -> (2, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (4, 4) -> (3, 3) - Postivity: 0,5
+Depth: 1 - Team A - Rabbit: (1, 1) -> (3, 1) - Postivity: 0,5
+   ---
+Depth: 0 - Team B - Frog: (0, 4) -> (1, 3) - Postivity: 0,5555556
+Depth: 0 - Team B - Cobra: (0, 4) -> (1, 4) - Postivity: 0,5555556
+Depth: 0 - Team B - Frog: (2, 4) -> (3, 3) - Postivity: 0,5555556
+Depth: 0 - Team B - Cobra: (2, 4) -> (1, 3) - Postivity: 0,5555556
+Depth: 0 - Team B - Frog: (3, 4) -> (4, 3) - Postivity: 0,5555556
+Depth: 0 - Team B - Cobra: (3, 4) -> (2, 3) - Postivity: 0,5555556
+Depth: 0 - Team B - Cobra: (4, 4) -> (3, 3) - Postivity: 0,5555556
+Depth: 1 - Team A - Mantis: (1, 1) -> (0, 2) - Postivity: 0,4444444
+   ---
+Depth: 0 - Team B - Frog: (0, 2) -> (1, 1) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (0, 2) -> (2, 2) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 2) -> (1, 2) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (0, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 4) -> (1, 4) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (2, 4) -> (3, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (2, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (3, 4) -> (4, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (3, 4) -> (2, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (4, 4) -> (3, 3) - Postivity: 0,5
+Depth: 1 - Team A - Mantis: (1, 1) -> (1, 0) - Postivity: 0,5
+   ---
+Depth: 0 - Team B - Frog: (0, 2) -> (1, 1) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (0, 2) -> (2, 2) - Postivity: 0,4444444
+Depth: 0 - Team B - Cobra: (0, 2) -> (1, 2) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (0, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 4) -> (1, 4) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (2, 4) -> (3, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (2, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (3, 4) -> (4, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (3, 4) -> (2, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (4, 4) -> (3, 3) - Postivity: 0,5
+Depth: 1 - Team A - Mantis: (1, 1) -> (2, 2) - Postivity: 0,5
+   ---
+Depth: 0 - Team B - Frog: (0, 2) -> (1, 1) - Postivity: 0,4444444
+Depth: 0 - Team B - Frog: (0, 2) -> (2, 2) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 2) -> (1, 2) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (0, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 4) -> (1, 4) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (2, 4) -> (3, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (2, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (3, 4) -> (4, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (3, 4) -> (2, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (4, 4) -> (3, 3) - Postivity: 0,5
+Depth: 1 - Team A - Rabbit: (2, 0) -> (3, 1) - Postivity: 0,5
+   ---
+Depth: 0 - Team B - Frog: (0, 2) -> (1, 1) - Postivity: 0,4444444
+Depth: 0 - Team B - Frog: (0, 2) -> (2, 2) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 2) -> (1, 2) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (0, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 4) -> (1, 4) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (2, 4) -> (3, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (2, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (3, 4) -> (4, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (3, 4) -> (2, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (4, 4) -> (3, 3) - Postivity: 0,5
+Depth: 1 - Team A - Mantis: (2, 0) -> (3, 1) - Postivity: 0,5
+   ---
+Depth: 0 - Team B - Frog: (0, 2) -> (1, 1) - Postivity: 0,4444444
+Depth: 0 - Team B - Frog: (0, 2) -> (2, 2) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 2) -> (1, 2) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (0, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 4) -> (1, 4) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (2, 4) -> (3, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (2, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (3, 4) -> (4, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (3, 4) -> (2, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (4, 4) -> (3, 3) - Postivity: 0,5
+Depth: 1 - Team A - Mantis: (4, 0) -> (3, 1) - Postivity: 0,5
+   ---
+Depth: 0 - Team B - Frog: (0, 2) -> (1, 1) - Postivity: 0,4444444
+Depth: 0 - Team B - Frog: (0, 2) -> (2, 2) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 2) -> (1, 2) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (0, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 4) -> (1, 4) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (2, 4) -> (3, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (2, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (3, 4) -> (4, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (3, 4) -> (2, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (4, 4) -> (3, 3) - Postivity: 0,5
+Depth: 1 - Team A - Rabbit: (4, 1) -> (3, 0) - Postivity: 0,5
+   ---
+Depth: 0 - Team B - Frog: (0, 2) -> (1, 1) - Postivity: 0,4444444
+Depth: 0 - Team B - Frog: (0, 2) -> (2, 2) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 2) -> (1, 2) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (0, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (0, 4) -> (1, 4) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (2, 4) -> (3, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (2, 4) -> (1, 3) - Postivity: 0,5
+Depth: 0 - Team B - Frog: (3, 4) -> (4, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (3, 4) -> (2, 3) - Postivity: 0,5
+Depth: 0 - Team B - Cobra: (4, 4) -> (3, 3) - Postivity: 0,5
+Depth: 1 - Team A - Mantis: (4, 1) -> (3, 2) - Postivity: 0,5
+   ---
